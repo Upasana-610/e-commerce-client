@@ -58,7 +58,6 @@ const ProductPage = ({ isAuthenticated, user, usercart, userLoad }) => {
       });
 
       if (unique === -1) {
-        let res = "";
         usercart.push({ product, selected, qty });
         setCart(usercart);
 
