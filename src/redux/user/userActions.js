@@ -16,8 +16,7 @@ import { GET_ERRORS, CLEAR_ERRORS } from "./../usererror/errorTypes";
 import { login } from "../../api/login";
 import { showAlert } from "../../api/alerts";
 
-const BASE_URL =
-  "https://roar-ecommerce-api.herokuapp.com/" || "http://localhost:3000";
+const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
 
 // check token and load user
 export const loadUser = () => async (dispatch, getState) => {
