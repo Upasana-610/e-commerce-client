@@ -1,7 +1,8 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL =
+  "https://roar-ecommerce-api.herokuapp.com/" || "http://localhost:3000";
 
 export const cartAdding = async (userid, cart) => {
   try {

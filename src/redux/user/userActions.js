@@ -16,7 +16,8 @@ import { GET_ERRORS, CLEAR_ERRORS } from "./../usererror/errorTypes";
 import { login } from "../../api/login";
 import { showAlert } from "../../api/alerts";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL =
+  "https://roar-ecommerce-api.herokuapp.com/" || "http://localhost:3000";
 
 // check token and load user
 export const loadUser = () => async (dispatch, getState) => {
@@ -80,48 +81,47 @@ export const loginUser = ({ email, password }) => {
 };
 
 // Register User
-export const register = ({ email, password, passwordConfirm, name }) => (
-  dispatch,
-  getState
-) => {
-  const config = {
-    headers: {
-      "Content-Type": "application.json",
-    },
-  };
-  const h = JSON.stringify({ name, email, password, passwordConfirm });
+export const register =
+  ({ email, password, passwordConfirm, name }) =>
+  (dispatch, getState) => {
+    const config = {
+      headers: {
+        "Content-Type": "application.json",
+      },
+    };
+    const h = JSON.stringify({ name, email, password, passwordConfirm });
 
-  axios
-    .post(`${BASE_URL}/api/v1/users/signup`, h, tokenConfig(getState))
-    .then((res) => {
-      const userData = {
-        user: res.data.data.user,
-        token: res.data.token,
-      };
-      localStorage.setItem("jwt", res.data.token);
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: userData,
+    axios
+      .post(`${BASE_URL}/api/v1/users/signup`, h, tokenConfig(getState))
+      .then((res) => {
+        const userData = {
+          user: res.data.data.user,
+          token: res.data.token,
+        };
+        localStorage.setItem("jwt", res.data.token);
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: userData,
+        });
+        dispatch({
+          type: CLEAR_ERRORS,
+        });
+        showAlert("success", "Signed up successfully!");
+      })
+      .catch((err) => {
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+        dispatch(
+          returnErrors(
+            err.response.data.message,
+            err.response.status,
+            "REGISTER_FAIL"
+          )
+        );
+        showAlert("error", err.response.data.message);
       });
-      dispatch({
-        type: CLEAR_ERRORS,
-      });
-      showAlert("success", "Signed up successfully!");
-    })
-    .catch((err) => {
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-      dispatch(
-        returnErrors(
-          err.response.data.message,
-          err.response.status,
-          "REGISTER_FAIL"
-        )
-      );
-      showAlert("error", err.response.data.message);
-    });
-};
+  };
 
 // logout
 export const logout = () => (dispatch) => {
