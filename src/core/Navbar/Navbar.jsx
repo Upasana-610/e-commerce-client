@@ -59,7 +59,7 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
         <GiHamburgerMenu size={25} style={{ cursor: "pointer" }} />
         <Logo>
           <img src={logo} />
-          <p>Snitch</p>
+          <p>Roar</p>
         </Logo>
 
         <Icon
