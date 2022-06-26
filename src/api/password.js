@@ -1,7 +1,7 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-export const BASE_URL = "https://roar-ecommerce-api.herokuapp.com/";
+export const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
 
 export const updatePassword = async ({
   passwordCurrent,
