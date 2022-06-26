@@ -88,13 +88,13 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
             </>
           )}
           <>
-            <FiSearch
+            {/* <FiSearch
               className="iconcls"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 setSearch(!search);
               }}
-            />
+            /> */}
             <FaShoppingCart
               onClick={cartPage}
               className="iconcls"
@@ -103,11 +103,11 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
             {isAuthenticated === true ? <p>{usercart.length}</p> : ""}
           </>
         </Icon>
-        <input
+        {/* <input
           type="text"
           placeholder="search here"
           className={search ? `hidden` : ""}
-        />
+        /> */}
       </NavbarCss>
 
       <Slider data={ad} height={"3vw"} color="rgb(34, 26, 26)" />
