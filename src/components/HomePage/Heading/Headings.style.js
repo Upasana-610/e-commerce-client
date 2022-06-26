@@ -11,6 +11,10 @@ export const Headingscss = styled.div`
   margin: 0 8% 5% 8%;
   display: grid;
   grid-template-columns: auto auto auto auto;
+  @media (max-width: 650px) {
+    margin: 0px 6% 6% 6%;
+    grid-template-columns: auto auto;
+  }
 `;
 
 export const Buttoncss = styled.div`

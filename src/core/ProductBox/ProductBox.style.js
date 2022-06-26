@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const ProductBoxcss = styled.div`
   width: 18vw;
   margin: 10%;
+  @media (max-width: 650px) {
+    margin: 0px 6% 6% 6%;
+    width: 30vw;
+  }
 `;
 
 export const Imagebox = styled.div`
@@ -16,22 +20,33 @@ export const Imagebox = styled.div`
       margin: 10% 0;
       background: url(${({ pImage }) => pImage}) no-repeat center;
       background-size: auto 100%;
+
+      @media (max-width: 650px) {
+        width: 32vw;
+        height: 42vw;
+      }
     }
-    .button {
-      display: none;
-      font-size: 1vw;
-      background-color: black;
-      color: white;
-      width: 90%;
-      margin: 3% 5%;
-      height: 8%;
-      outline: none;
-      border: none;
-      position: absolute;
-      bottom: 1%;
-      left: 0;
-      z-index: 1;
-      display: none;
+  }
+  .button {
+    display: none;
+    font-size: 1vw;
+    background-color: black;
+    color: white;
+    width: 90%;
+    margin: 3% 5%;
+    height: 8%;
+    outline: none;
+    border: none;
+    position: absolute;
+    bottom: 1%;
+    left: 0;
+    z-index: 1;
+    display: none;
+
+    @media (max-width: 650px) {
+      margin: 3% 13%;
+      width: 80%;
+      font-size: 2vw;
     }
   }
 
@@ -59,12 +74,21 @@ export const Details = styled.div`
   width: 20vw;
   letter-spacing: 1px;
   text-align: center;
+  @media (max-width: 650px) {
+    width: 30vw;
+    @media (max-width: 650px) {
+    }
+    font-size: 1.95vw;
+  }
 `;
 export const Size = styled.div`
   /* padding: 10px; */
   /* margin: 10px 45px; */
   width: 15vw;
   margin: 0.225vw;
+  @media (max-width: 650px) {
+    width: 25vw;
+  }
   ul {
     display: flex;
     /* justify-content: space-between; */
@@ -79,6 +103,9 @@ export const Size = styled.div`
     padding: 0.5vw;
     margin: 0.25vw;
     border-radius: 20%;
+    @media (max-width: 650px) {
+      font-size: 2vw;
+    }
   }
 
   li:hover {

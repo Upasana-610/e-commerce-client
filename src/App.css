@@ -12,6 +12,7 @@ body {
   font-family: "Noto Serif", serif;
   font-family: "Playfair Display", serif;
   font-family: "Roboto", sans-serif;
+  padding-bottom: 8vw;
 }
 
 .alert {

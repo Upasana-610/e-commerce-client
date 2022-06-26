@@ -8,11 +8,16 @@ export const Ad = styled.div`
   align-items: center;
   width: ${({ width }) => (width ? width : "100%")};
   height: ${({ height }) => height};
+
+  div {
+    font-size: ${({ height }) => (height === "3vw" ? "1.05vw" : "100%")};
+  }
+
   /* height: 0vh; */
 
   position: relative;
   div {
-    padding-top: 5px;
+    padding-top: 1vmin;
     letter-spacing: 0.5vw;
     text-align: center;
     animation: scroll 10000ms linear infinite;
@@ -23,7 +28,7 @@ export const Ad = styled.div`
     display: block;
     margin: auto;
     width: 95vw;
-    padding: 10px;
+    padding: 5vmin;
   }
 
   /* .slideWindow {
@@ -68,6 +73,13 @@ export const Ad = styled.div`
   } */
     100% {
       transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width: 650px) {
+    height: ${({ height }) => (height === "3vw" ? "8vw" : "100%")};
+    div {
+      font-size: ${({ height }) => (height === "3vw" ? "3vw" : "100%")};
     }
   }
 

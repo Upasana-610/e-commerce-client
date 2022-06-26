@@ -37,7 +37,7 @@ function Slider({ data = [], height, width, color = "transparent" }) {
               // style={{ width: `${width}` }}
             />
           ) : (
-            <div style={{ fontSize: "1.05vw" }}> {data[index].ad}</div>
+            <div> {data[index].ad}</div>
           )
         ) : (
           ""

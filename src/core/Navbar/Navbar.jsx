@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "./../../image/logo.png";
-import { AiOutlineUser } from "react-icons/ai";
-import { BiSearchAlt2 } from "react-icons/bi";
-import { BsHandbag } from "react-icons/bs";
+import { FaUserAlt, FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
+
 import { NavbarCss, Logo, Icon, Ad } from "./Navbar.style";
 import { fetchnavbarAddata } from "../../api/navbarad";
 import { useHistory } from "react-router-dom";
@@ -13,6 +13,7 @@ import { logout } from "../../redux";
 
 const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
   let [ad, setAd] = useState([]);
+  let [search, setSearch] = useState(false);
 
   let history = useHistory();
   const logoutUser = () => {
@@ -42,6 +43,10 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
     }
   };
 
+  const goToAcc = () => {
+    history.push("/me");
+  };
+
   useEffect(() => {
     fetchnavData();
   }, []);
@@ -49,14 +54,14 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
   // }, 2000);
   const iconStyle = {
     cursor: "pointer",
-    fontSize: "1.5vw",
-    marginLeft: "1.05vw",
+    fontSize: "2.5vw",
+    marginLeft: "3.05vw",
   };
 
   return (
     <>
       <NavbarCss>
-        <GiHamburgerMenu size={25} style={{ cursor: "pointer" }} />
+        <GiHamburgerMenu className="iconcls" />
         <Logo>
           <img src={logo} />
           <p>Roar</p>
@@ -67,32 +72,45 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
         >
           {isAuthenticated !== true ? (
             <>
-              <h6 style={iconStyle} onClick={handleClickSignUp}>
+              <h6 className="iconcls" onClick={handleClickSignUp}>
                 {" "}
                 Sign Up
               </h6>
-              <AiOutlineUser
-                size={25}
-                style={{ cursor: "pointer" }}
-                onClick={handleClick}
-              />
+              <FaUserAlt className="iconcls" onClick={handleClick} />
             </>
           ) : (
             <>
               {" "}
-              <h6 style={iconStyle} onClick={logoutUser}>
+              <h6 className="iconcls" onClick={logoutUser}>
                 Logout
               </h6>
-              <div></div>
+              <div onClick={goToAcc} className="iconcls"></div>
             </>
           )}
-
-          <BiSearchAlt2 size={25} style={iconStyle} />
-          <BsHandbag size={25} style={iconStyle} onClick={cartPage} />
-          {isAuthenticated === true ? <p>{usercart.length}</p> : ""}
+          <>
+            <FiSearch
+              className="iconcls"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setSearch(!search);
+              }}
+            />
+            <FaShoppingCart
+              onClick={cartPage}
+              className="iconcls"
+              style={{ cursor: "pointer" }}
+            />
+            {isAuthenticated === true ? <p>{usercart.length}</p> : ""}
+          </>
         </Icon>
+        <input
+          type="text"
+          placeholder="search here"
+          className={search ? `hidden` : ""}
+        />
       </NavbarCss>
-      <Slider data={ad} height={"5vh"} color="rgb(34, 26, 26)" />
+
+      <Slider data={ad} height={"3vw"} color="rgb(34, 26, 26)" />
     </>
   );
 };

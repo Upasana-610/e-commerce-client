@@ -5,7 +5,13 @@ import { showAlert } from "../../api/alerts";
 import { fetchSingleProduct } from "../../api/ProductsApi";
 import Layout from "../../Layout/Layout";
 import { loadUser, singleProduct } from "../../redux";
-import { Productcss, ProductDetails, Qty, Size } from "./ProductPage.style";
+import {
+  Productcover,
+  Productcss,
+  ProductDetails,
+  Qty,
+  Size,
+} from "./ProductPage.style";
 import { cartAdding } from "../../api/cartapi";
 
 const ProductPage = ({ isAuthenticated, user, usercart, userLoad }) => {
@@ -58,13 +64,20 @@ const ProductPage = ({ isAuthenticated, user, usercart, userLoad }) => {
       });
 
       if (unique === -1) {
+        showAlert(
+          "success",
+          "Wait for the item to get added in  cart successfully!",
+          1000
+        );
         usercart.push({ product, selected, qty });
         setCart(usercart);
+        setTimeout(() => {
+          cartAdding(user._id, cart[cart.length - 1]);
+        }, 3000);
 
-        cartAdding(user._id, cart[cart.length - 1]);
         setTimeout(() => {
           window.location.reload();
-        }, 0.75 * 1000);
+        }, 6000);
 
         userLoad();
       }
@@ -91,31 +104,103 @@ const ProductPage = ({ isAuthenticated, user, usercart, userLoad }) => {
           : ""
         : ""}
 
-      <Productcss>
-        <div>
-          {product.length !== 0 && product.pImages
-            ? product.pImages.map((item, idx) => (
-                <img
-                  key={idx}
-                  alt="product"
-                  src={`/img/Products/Product1/${item}`}
-                  className={curr === item ? "active" : ""}
-                  onClick={(e) => {
-                    setCurr(item);
-                  }}
-                ></img>
-              ))
-            : ""}
-        </div>
-        <div>
-          <img
-            src={`/img/Products/Product1/${curr}`}
-            className="activeImg"
-            alt="MainImg"
-          ></img>
-        </div>
+      <Productcover pColor={product.pColor}>
+        <Productcss>
+          <div>
+            {product.length !== 0 && product.pImages
+              ? product.pImages.map((item, idx) => (
+                  <img
+                    key={idx}
+                    alt="product"
+                    src={`/img/Products/Product1/${item}`}
+                    className={curr === item ? "active" : ""}
+                    onClick={(e) => {
+                      setCurr(item);
+                    }}
+                  ></img>
+                ))
+              : ""}
+          </div>
+          <div>
+            {curr !== "" ? (
+              <img
+                src={`/img/Products/Product1/${curr}`}
+                className="activeImg"
+                alt="MainImg"
+              ></img>
+            ) : (
+              <h1>Loading</h1>
+            )}
+          </div>
 
-        <ProductDetails pColor={product.pColor}>
+          <ProductDetails pColor={product.pColor}>
+            <p className="Big">{product.pName}</p>
+            <p className="Big">Rs. {product.pPrice}</p>
+            <h7>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</h7>
+            <p className="color">
+              Color- <span>{product.pColor}</span>{" "}
+            </p>
+            <div className="colorCircle" bgcolor="#000000"></div>
+            <Size>
+              <h3>Size</h3>
+              <ul>
+                {product.length !== 0 && product.pSize
+                  ? product.pSize.map((item, idx) => (
+                      <li
+                        onClick={(e) => {
+                          selectedSize(e);
+                        }}
+                        className={item === selected ? "selected" : ""}
+                        key={idx}
+                      >
+                        {item}
+                      </li>
+                    ))
+                  : ""}
+              </ul>
+            </Size>
+            <Qty>
+              <h3>Quantity</h3>
+              <div>
+                <p
+                  className="qtyp bt"
+                  onClick={() => {
+                    changeQty("-");
+                  }}
+                >
+                  -
+                </p>
+                <p className="qtyp">{qty}</p>
+                <p
+                  className="qtyp bt"
+                  onClick={() => {
+                    changeQty("+");
+                  }}
+                >
+                  +
+                </p>
+              </div>
+            </Qty>
+            <dl>
+              <h3>Description</h3>
+              <dd>{product.pDescription}</dd>
+              <h3>Occassion</h3>
+              <dd>{product.pOccasion}</dd>
+              <h3>Fabric</h3>
+              <dd>{product.pFabric}</dd>
+              <h3>Fit</h3>
+              <dd>{product.pFit}</dd>
+              <h3>Model Size</h3>
+              <dd>{product.pModelSize}</dd>
+              <h3>Model Height</h3>
+              <dd>{product.pModelHeight}</dd>
+              <h3>Wash</h3>
+              <dd>{product.pWash}</dd>
+            </dl>
+            <button onClick={cartAdd}>Add to Cart</button>
+          </ProductDetails>
+        </Productcss>
+        <div className="desc">
           <p className="Big">{product.pName}</p>
           <p className="Big">Rs. {product.pPrice}</p>
           <p>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</p>
@@ -163,25 +248,25 @@ const ProductPage = ({ isAuthenticated, user, usercart, userLoad }) => {
               </p>
             </div>
           </Qty>
-          <dl>
-            <dt>Description</dt>
-            <dd>{product.pDescription}</dd>
-            <dt>Occassion</dt>
-            <dd>{product.pOccasion}</dd>
-            <dt>Fabric</dt>
-            <dd>{product.pFabric}</dd>
-            <dt>Fit</dt>
-            <dd>{product.pFit}</dd>
-            <dt>Model Size</dt>
-            <dd>{product.pModelSize}</dd>
-            <dt>Model Height</dt>
-            <dd>{product.pModelHeight}</dd>
-            <dt>Wash</dt>
-            <dd>{product.pWash}</dd>
-          </dl>
+          <p>
+            <h5>Description</h5>
+            <p>{product.pDescription}</p>
+            <h5>Occassion</h5>
+            <p>{product.pOccasion}</p>
+            <h5>Fabric</h5>
+            <p>{product.pFabric}</p>
+            <h5>Fit</h5>
+            <p>{product.pFit}</p>
+            <h5>Model Size</h5>
+            <p>{product.pModelSize}</p>
+            <h5>Model Height</h5>
+            <p>{product.pModelHeight}</p>
+            <h5>Wash</h5>
+            <p>{product.pWash}</p>
+          </p>
           <button onClick={cartAdd}>Add to Cart</button>
-        </ProductDetails>
-      </Productcss>
+        </div>
+      </Productcover>
     </Layout>
   );
 };

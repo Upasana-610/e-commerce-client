@@ -1,5 +1,60 @@
 import styled from "styled-components";
 
+export const Productcover = styled.div`
+  padding: 5vw;
+  overflow-x: hidden;
+  p {
+    margin-left: 10vmin;
+    font-size: 4vw;
+  }
+  h5 {
+    margin: 3vw;
+  }
+
+  .color {
+    font-size: 3vmin;
+    margin-top: 2vmin;
+    font-weight: 500;
+    span {
+      font-weight: 100;
+    }
+  }
+
+  .colorCircle {
+    border-radius: 50%;
+    height: 10vmin;
+    width: 10vmin;
+    background-color: ${({ pColor }) => (pColor ? pColor : "")};
+    margin-top: 3vmin;
+    margin-left: 10vmin;
+  }
+  .Big {
+    margin-left: 10vmin;
+
+    font-size: 5vmin;
+  }
+  button {
+    background-color: black;
+    color: white;
+    margin-top: 5vmin;
+    margin-left: 10vmin;
+    padding: 2vmin;
+    font-size: 2vmin;
+    border: none;
+  }
+
+  button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+  }
+
+  @media (min-width: 1080px) {
+    .desc {
+      display: none;
+    }
+  }
+`;
+
 export const Productcss = styled.div`
   display: flex;
   padding: 100px 0;
@@ -28,13 +83,28 @@ export const Productcss = styled.div`
       margin: 2vw;
       margin-bottom: 3vw;
     }
+
+    .desc {
+    }
+  }
+
+  @media (max-width: 650px) {
+    div {
+      margin-left: 8vw;
+    }
   }
 `;
 
 export const ProductDetails = styled.div`
   padding-top: 2vw;
-  p {
+
+  p,
+  h7 {
     margin-left: 10vmin;
+  }
+
+  h3 {
+    margin: 1vw 0;
   }
 
   .color {
@@ -82,6 +152,14 @@ export const ProductDetails = styled.div`
     background-color: darkblue;
     cursor: pointer;
   }
+
+  @media (max-width: 1080px) {
+    visibility: hidden;
+    height: 6vw;
+    div {
+      margin-left: 30vw;
+    }
+  }
 `;
 
 export const Size = styled.div`
@@ -116,6 +194,18 @@ export const Size = styled.div`
   .selected {
     background-color: black;
     color: #ccc;
+  }
+
+  .Description {
+    dt {
+      display: block;
+    }
+  }
+
+  @media (max-width: 650px) {
+    li {
+      font-size: 3.25vw;
+    }
   }
 `;
 

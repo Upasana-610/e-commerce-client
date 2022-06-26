@@ -51,7 +51,7 @@ function SignUp({ isAuthenticated, error, register }) {
   return (
     <Layout>
       <Logincss>
-        <h2>Log into your account</h2>
+        <h2>Sign in to your account</h2>
 
         <form className="form" onSubmit={handleSubmit}>
           <div>

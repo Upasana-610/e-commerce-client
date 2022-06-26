@@ -19,6 +19,7 @@ import { BiWindowOpen } from "react-icons/bi";
 import { useState } from "react";
 import Subcategories from "./Pages/Subcategories/Subcategories";
 import GlobalStyles from "./globalStyle";
+import Account from "./Pages/Account/Account";
 
 function App() {
   let history = useHistory();
@@ -31,8 +32,6 @@ function App() {
 
   return (
     <>
-      {/* <HomePage /> */}
-      {/* <ProductBox /> */}
       <GlobalStyles />
       <Provider store={store}>
         <BrowserRouter>
@@ -48,6 +47,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/productpage/:product" component={ProductPage} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/me" component={Account} />
           </Switch>
         </BrowserRouter>
       </Provider>

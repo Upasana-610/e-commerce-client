@@ -2,11 +2,12 @@ import { connect } from "react-redux";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../../Layout/Layout";
-import { Auth, Itemcss, Notauth } from "./Cart.style";
+import { Auth, Itemcss, Itemmedia, Notauth } from "./Cart.style";
 import { cartDelApi, cartQuantityApi } from "../../api/cartapi";
 import { loadUser } from "../../redux";
 import { AiFillDelete } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import { showAlert } from "../../api/alerts";
 
 const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
   let [cart, setCart] = useState([]);
@@ -40,17 +41,19 @@ const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
 
   const cartQuantityDel = (item) => {
     console.log(item);
+    usercart = usercart.filter((itempr) => itempr === item);
+    showAlert("success", "Wait till the item gets deleted !");
     setTimeout(() => {
       cartQuantityApi(user._id, item.product.id, 0, item.selected);
-    }, 50);
+    }, 1000);
 
     setTimeout(() => {
       cartDelApi(user._id, item.product.id);
-    }, 100);
+    }, 2000);
 
     setTimeout(() => {
       window.location.reload();
-    }, 200);
+    }, 3000);
 
     userLoad();
   };
@@ -70,53 +73,112 @@ const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
           ) : (
             usercart.map((item, idx) => {
               return (
-                <Itemcss key={idx}>
-                  <img
-                    src={`/img/Products/Product1/${item.product.pImages[0]}`}
-                    className="activeImg"
-                    alt="MainImg"
-                  ></img>
-                  <p>
-                    {item.product.pName}{" "}
-                    <h5
-                      onClick={() => {
-                        goToprod(item.product.id);
-                      }}
-                    >
-                      View
-                    </h5>
-                  </p>
-                  <p>{item.selected}</p>
-                  <p>
-                    Rs. {item.product.pPrice} x {item.qty}
-                  </p>
-                  <p>
-                    <p
-                      onClick={() => {
-                        cartQuantityInc(item);
-                      }}
-                    >
-                      +
-                    </p>
-                    <p
-                      onClick={() => {
-                        cartQuantityDnc(item);
-                      }}
-                    >
-                      -
-                    </p>
-                  </p>
-                  <p>{item.product.pOffer} % discount</p>
-                  <p>
+                <>
+                  <Itemcss key={idx}>
+                    <img
+                      src={`/img/Products/Product1/${item.product.pImages[0]}`}
+                      className="activeImg"
+                      alt="MainImg"
+                    ></img>
                     <p>
-                      <AiFillDelete
+                      {item.product.pName}{" "}
+                      <h5
                         onClick={() => {
-                          cartQuantityDel(item);
+                          goToprod(item.product.id);
                         }}
-                      />
+                      >
+                        View
+                      </h5>
                     </p>
-                  </p>
-                </Itemcss>
+                    <p>{item.selected}</p>
+                    <p>
+                      Rs. {item.product.pPrice} x {item.qty}
+                    </p>
+                    <p>
+                      <div
+                        className="qty"
+                        onClick={() => {
+                          cartQuantityInc(item);
+                        }}
+                      >
+                        +
+                      </div>
+                      <div
+                        className="qty"
+                        onClick={() => {
+                          cartQuantityDnc(item);
+                        }}
+                      >
+                        -
+                      </div>
+                    </p>
+                    <p>{item.product.pOffer} % discount</p>
+                    <p>
+                      <p>
+                        <AiFillDelete
+                          onClick={() => {
+                            cartQuantityDel(item);
+                          }}
+                        />
+                      </p>
+                    </p>
+                  </Itemcss>
+                  <Itemmedia key={idx}>
+                    <div>
+                      <img
+                        src={`/img/Products/Product1/${item.product.pImages[0]}`}
+                        className="activeImg"
+                        alt="MainImg"
+                      ></img>
+                      <p>
+                        {item.product.pName}{" "}
+                        <h5
+                          onClick={() => {
+                            goToprod(item.product.id);
+                          }}
+                        >
+                          View
+                        </h5>
+                      </p>
+                    </div>
+
+                    <div>
+                      <p>{item.selected}</p>
+                      <p>
+                        Rs. {item.product.pPrice} x {item.qty}
+                      </p>
+                      <p>
+                        <div
+                          className="qty"
+                          onClick={() => {
+                            cartQuantityInc(item);
+                          }}
+                        >
+                          +
+                        </div>
+                        <div
+                          className="qty"
+                          onClick={() => {
+                            cartQuantityDnc(item);
+                          }}
+                        >
+                          -
+                        </div>
+                      </p>
+                    </div>
+
+                    <p className="offer">{item.product.pOffer} %off</p>
+                    <p className="delete">
+                      <p>
+                        <AiFillDelete
+                          onClick={() => {
+                            cartQuantityDel(item);
+                          }}
+                        />
+                      </p>
+                    </p>
+                  </Itemmedia>
+                </>
               );
             })
           )}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
+import { BASE_URL } from "./password";
 
 export const cartAdding = async (userid, cart) => {
   try {
@@ -17,7 +17,7 @@ export const cartAdding = async (userid, cart) => {
     console.log("dndns");
 
     if (res.data.status === "success") {
-      showAlert("success", "Added in  cart successfully!");
+      showAlert("success", "Item  added in  cart successfully!");
       // window.setTimeout(() => {
       //   location.assign("/");
       // }, 1500);

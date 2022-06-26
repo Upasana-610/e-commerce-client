@@ -6,20 +6,65 @@ export const NavbarCss = styled.div`
   align-items: center;
   color: white;
   background-color: black;
-  height: 150px;
-  padding: 10px 25px;
+  height: 9vw;
+  padding: 3vw 8vmin;
+
+  .iconcls {
+    cursor: "pointer";
+    font-size: 1.5vw;
+    margin-left: 3.05vw;
+  }
+
+  @media (max-width: 650px) {
+    height: 40vw;
+
+    .iconcls {
+      cursor: "pointer";
+      font-size: 4.5vw;
+      margin-left: 3.05vw;
+    }
+  }
+  input {
+    padding: 1vw;
+    border: none;
+
+    background-color: #f2f2f2;
+    font-size: 1.5vw;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 650px) {
+    input {
+      font-size: 2.5vw;
+    }
+  }
 `;
 
 export const Logo = styled.div`
   p {
     text-align: center;
     font-size: 1.5vw;
-    letter-spacing: 2px;
+    letter-spacing: 0.5vmin;
+    margin-left: 8vw;
   }
   img {
-    width: 80px;
-    height: 80px;
+    width: 4vw;
+    height: 4vw;
+    margin-left: 8vw;
     filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 650px) {
+    img {
+      width: 10vw;
+      height: 10vw;
+    }
+    p {
+      font-size: 3.5vw;
+    }
   }
   cursor: pointer;
 `;
@@ -27,14 +72,13 @@ export const Logo = styled.div`
 export const Icon = styled.div`
   display: inline-flex;
   justify-content: space-between;
-  width: 16vw;
 
   div {
     border-radius: 100%;
-    height: 2vw;
-    width: 2vw;
-    margin-left: 2vw;
-    background-color: red;
+    height: 3vw;
+    width: 3vw;
+    margin-left: 3vw;
+
     background: url(${({ photo }) => photo}) no-repeat center;
     background-size: auto 100%;
   }
@@ -42,7 +86,18 @@ export const Icon = styled.div`
     cursor: pointer;
   }
 
-  /* @media (max-width: 650px) {
-    width: 100px;
-  } */
+  p {
+    font-size: 1.05vw;
+  }
+
+  @media (max-width: 650px) {
+    div {
+      height: 5vw;
+      width: 5vw;
+    }
+
+    p {
+      font-size: 3vw;
+    }
+  }
 `;

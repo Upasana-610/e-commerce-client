@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
+import { BASE_URL } from "./password";
 
 export const fetchAdImgdata = async () => {
   let result = await axios.get(`${BASE_URL}/api/v1/adimg`);

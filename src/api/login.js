@@ -2,7 +2,7 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
+import { BASE_URL } from "./password";
 
 export const login = async ({ email, password }) => {
   try {
@@ -17,7 +17,7 @@ export const login = async ({ email, password }) => {
     });
 
     if (res.data.status === "success") {
-      showAlert("success", "Logged in successfully!");
+      showAlert("success", "Logged in successfully!", 2);
       // window.setTimeout(() => {
       //   location.assign("/");
       // }, 1500);
@@ -25,10 +25,10 @@ export const login = async ({ email, password }) => {
       return res.data.data.user;
     }
   } catch (err) {
-    window.setTimeout(() => {
-      location.assign("/login");
+    setTimeout(() => {
+      window.location.assign("/login");
     });
-    showAlert("error", "Login Error");
+    showAlert("error", "Login Error", 2);
   }
 };
 
