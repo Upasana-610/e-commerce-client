@@ -47,6 +47,10 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
     history.push("/me");
   };
 
+  const gotoHome = () => {
+    history.push("/");
+  };
+
   useEffect(() => {
     fetchnavData();
   }, []);
@@ -62,7 +66,7 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
     <>
       <NavbarCss>
         <GiHamburgerMenu className="iconcls" />
-        <Logo>
+        <Logo onClick={gotoHome}>
           <img src={logo} />
           <p>Roar</p>
         </Logo>
