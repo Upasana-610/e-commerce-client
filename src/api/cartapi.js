@@ -22,6 +22,7 @@ export const cartAdding = async (userid, cart) => {
       //   location.assign("/");
       // }, 1500);
     }
+    return;
   } catch (err) {
     showAlert("error", "Could'nt Add Error");
   }
@@ -41,12 +42,14 @@ export const cartQuantityApi = async (userid, productid, qty, sel) => {
         sel,
       },
     });
+    return res;
     console.log("dndns");
   } catch (err) {}
 };
 
-export const cartDelApi = async (userid, productid) => {
+export const cartDelApi = async (userid, productid, selected) => {
   console.log(userid, productid);
+
   try {
     const res = await axios({
       method: "PUT",
@@ -57,6 +60,6 @@ export const cartDelApi = async (userid, productid) => {
         productid,
       },
     });
-    console.log("dndns");
+    if (res) showAlert("success", "Item deleted Successfully!");
   } catch (err) {}
 };

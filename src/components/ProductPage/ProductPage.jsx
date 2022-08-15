@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { showAlert } from "../../api/alerts";
 import { fetchSingleProduct } from "../../api/ProductsApi";
 import Layout from "../../Layout/Layout";
-
+import { loadUser, singleProduct } from "../../redux";
 import {
   Productcover,
   Productcss,
@@ -15,14 +15,11 @@ import {
 import { cartAdding } from "../../api/cartapi";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { addCart } from "../../redux/user/usercartActions";
 
-const ProductPage = () => {
+const ProductPageComp = () => {
   let params = useParams();
   let [product, setProduct] = useState({});
   let [curr, setCurr] = useState("");
-  let [toggelcart, setToggleCart] = useState(false);
-
   let [qty, setQty] = useState(1);
   let [selected, setSelected] = useState(-1);
   let dispatch = useDispatch();
@@ -43,18 +40,6 @@ const ProductPage = () => {
     setCurr(product.pImages[0]);
   };
 
-  // useEffect
-  useEffect(() => {
-    singleProduct(params.product);
-  }, []);
-
-  useEffect(() => {
-    if (isAuthenticated === true) {
-      setCart(usercart);
-    }
-  }, [isAuthenticated]);
-
-  // Qty
   const changeQty = (sign) => {
     let currqty = qty;
     if (sign === "+") currqty++;
@@ -64,7 +49,6 @@ const ProductPage = () => {
     setQty(currqty);
   };
 
-  // size
   const selectedSize = (e) => {
     if (e.target.textContent !== selected) {
       console.log("a");
@@ -72,7 +56,6 @@ const ProductPage = () => {
     } else setSelected(-1);
   };
 
-  // cart Add
   const cartAdd = () => {
     if (isAuthenticated !== true)
       showAlert("error", "Please sign up or sign in to add to cart");
@@ -98,18 +81,32 @@ const ProductPage = () => {
         );
         usercart.push({ product, selected, qty });
         setCart(usercart);
-        // setTimeout(() => {
-        // cartAdding(user._id, cart[cart.length - 1]);
-        dispatch(addCart(user._id, cart[cart.length - 1]));
+        setTimeout(() => {
+          cartAdding(user._id, cart[cart.length - 1]);
+        }, 3000);
 
-        setToggleCart(!toggelcart);
+        setTimeout(() => {
+          window.location.reload();
+        }, 6000);
+
+        dispatch(loadUser());
       }
     }
   };
 
   console.log(product);
 
-  return product.length !== 0 && product.pImages ? (
+  useEffect(() => {
+    singleProduct(params.product);
+  }, []);
+
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      setCart(usercart);
+    }
+  }, [isAuthenticated]);
+
+  return (
     <Layout>
       {product.length !== 0 && product.pImages
         ? curr === ""
@@ -144,9 +141,7 @@ const ProductPage = () => {
             ) : (
               new Array(21)
                 .fill(100)
-                .map((item, idx) => (
-                  <Skeleton width={800} height={50} key={idx} />
-                ))
+                .map(() => <Skeleton width={800} height={50} />)
             )}
           </div>
 
@@ -159,14 +154,13 @@ const ProductPage = () => {
             </p>
             <div className="colorCircle" bgcolor="#000000"></div>
             <Size>
-              <h2>Size</h2>
+              <h3>Size</h3>
               <ul>
                 {product.length !== 0 && product.pSize
                   ? product.pSize.map((item, idx) => (
                       <li
                         onClick={(e) => {
                           selectedSize(e);
-                          // console.log(selected);
                         }}
                         className={item === selected ? "selected" : ""}
                         key={idx}
@@ -286,13 +280,7 @@ const ProductPage = () => {
         </div>
       </Productcover>
     </Layout>
-  ) : (
-    <Layout>
-      {new Array(21).fill(100).map((item, idx) => (
-        <Skeleton width={10000} height={200} key={idx} />
-      ))}{" "}
-    </Layout>
   );
 };
 
-export default ProductPage;
+export default ProductPageComp;

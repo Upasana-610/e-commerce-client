@@ -4,6 +4,7 @@ export const Heading = styled.h1`
   text-align: center;
   margin: 1% 0;
   font-size: 4vw;
+  font-weight: 100;
   letter-spacing: 50%;
 `;
 

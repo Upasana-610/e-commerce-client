@@ -10,7 +10,7 @@ export const Auth = styled.div`
   padding: 8vmin;
 
   button {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: white;
     margin-top: 5vmin;
     margin-left: 10vmin;

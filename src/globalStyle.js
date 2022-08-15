@@ -1,18 +1,48 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&family=Playfair+Display:ital@1&family=Roboto&display=swap');
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&family=Playfair+Display&family=Quicksand:wght@300&family=Roboto&display=swap');
 
-    body {
-        margin: 0;
-        font-family: 'Noto Serif', serif;
-font-family: 'Playfair Display', serif;
-font-family: 'Roboto', sans-serif; }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    ${"" /* font-family: 'Noto Serif', serif; */}
+    font-family: 'Quicksand', sans-serif;
+${"" /* font-family: 'Roboto', sans-serif; */}
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-bottom: 8vw;
+}
+
+html{
+  font-size:62.5%;
+}
+
+li{
+  list-style:none;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height:5px
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(156, 149, 149); 
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6d6c6c; 
+}
 `;
-
-export default GlobalStyles;
+export default GlobalStyle;

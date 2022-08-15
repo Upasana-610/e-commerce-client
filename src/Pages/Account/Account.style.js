@@ -45,7 +45,7 @@ export const Details = styled.div`
 
   .button:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
   }
   .profile {
     background: url(${({ photo }) => photo}) no-repeat center;
@@ -56,6 +56,43 @@ export const Details = styled.div`
     background-color: red;
     background-size: auto 100%;
     margin: 3vw;
+    position: relative;
+  }
+
+  .upload {
+    position: absolute;
+    left: 50%;
+    top: 105%;
+    transform: translate(-50%, 0);
+  }
+
+  .upload:hover {
+    border-bottom: 1px solid #401c03;
+    cursor: pointer;
+  }
+
+  .uploadForm {
+    height: fit-content;
+    width: fit-content;
+    background-color: #f2f2f2;
+    padding: 3vmin;
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+
+    .upbutt {
+      text-align: center;
+      padding: 1vmin;
+      background-color: #401c03;
+      font-size: 1.5vmin;
+      margin-right: 0.5vmin;
+      color: white;
+      border-radius: 2vmin;
+    }
+    .upbutt:hover {
+      cursor: pointer;
+      background-color: navy;
+    }
   }
 
   .passworddiv {

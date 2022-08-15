@@ -1,13 +1,13 @@
 import React from "react";
 import img from "./../../image/photo.jpg";
 import { ProductBoxcss, Imagebox, Details, Size } from "./ProductBox.style";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProductBox = ({ val = [] }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleProductPage = () => {
-    history.push(`/productpage/${val._id}`);
+    navigate(`/productpage/${val._id}`);
   };
 
   return (

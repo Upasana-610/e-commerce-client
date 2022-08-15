@@ -7,6 +7,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  USER_CART,
 } from "./userTypes";
 
 const initialState = {
@@ -14,22 +15,30 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: null,
+  usercart: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case USER_CART:
+      localStorage.setItem("cart", JSON.stringify(state.usercart));
+      return {
+        ...state,
+      };
     case USER_LOADING:
       return {
         ...state,
         isLoading: true,
       };
     case USER_LOADED: {
+      localStorage.setItem("cart", JSON.stringify(action.payload.user.cart));
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
 
         user: action.payload.user,
+        usercart: action.payload.user.cart,
       };
     }
     case LOGIN_SUCCESS:

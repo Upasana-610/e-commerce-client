@@ -1,69 +1,50 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Ad, imgStyle } from "./Slider.style";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-function Slider({ data = [], height, width, color = "transparent" }) {
-  const [index, setIndex] = useState(0);
-  const TimeoutRef = useRef(null);
-
-  const resetTimeout = () => {
-    if (TimeoutRef.current) {
-      clearTimeout(TimeoutRef.current);
-    }
+const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
+  let settings = {
+    autoplay: true,
+    autoplaySpeed: 4000,
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 1500,
+    // variableWidth: true,
   };
 
-  useEffect(() => {
-    resetTimeout();
-    TimeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) =>
-          prevIndex === data.length - 1 ? 0 : prevIndex + 1
-        ),
-      9995
-    );
-    // return () => {
-    //   resetTimeout();
-    // };
-  }, [index]);
-
+  let styles = {
+    height: "90%",
+    width: "70%",
+  };
+  console.log(data);
   return (
     <>
       {" "}
-      <Ad height={height} width={width} color={color}>
-        {data.length !== 0 ? (
-          data[index].adImg ? (
-            <img
-              src={`./img/AdSlider/${data[index].adImg}`}
-              alt={"ad"}
-              // style={{ width: `${width}` }}
-            />
-          ) : (
-            <div> {data[index].ad}</div>
+      {data.length !== 0 ? (
+        <Ad>
+          (
+          <Slider {...settings}>
+            {data.map((item, idx) => (
+              <img
+                src={`./img/AdSlider/${item.adImg}`}
+                alt={"ad"}
+                style={{ width: "8%" }}
+                key={idx}
+              />
+            ))}
+          </Slider>
           )
-        ) : (
-          ""
-        )}
-      </Ad>
-      {/* <div className="slideWindow">
-      <div
-        className="sliderTracker"
-        style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-      >
-        {console.log(ad)}
-
-        {ad.map((item, idx) => (
-          <p className="slide" key={idx}>
-            {item.ad}
-          </p>
-        ))}
-      </div>
-    </div> */}
-      {/* {ad.map((item, idx) => (
-      <p className={`${index !== idx ? "unactive" : ""}`} key={idx}>
-        {item.ad}
-      </p>
-    ))} */}
+        </Ad>
+      ) : (
+        <Skeleton height={500} />
+      )}
     </>
   );
-}
+};
 
-export default Slider;
+export default Slidercomp;

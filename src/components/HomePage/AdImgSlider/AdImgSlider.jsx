@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchAdImgdata } from "../../../api/AdImgSliderApi";
-import Slider from "../../../core/Slider/Slider";
+import Slidercomp from "../../../core/Slider/Slider";
 
 function AdImgSlider() {
   let [adImg, setAdImg] = useState([]);
@@ -23,7 +23,7 @@ function AdImgSlider() {
       {/* <img src={`./img/AdSlider/${adImg[0].adImg}`} /> */}
       {/* <Slider data={adImg} height={"125vx"} /> */}
 
-      <Slider data={adImg} height={`120%`} />
+      <Slidercomp data={adImg} height={`120%`} />
     </>
   );
 }

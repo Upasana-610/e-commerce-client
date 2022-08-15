@@ -5,7 +5,7 @@ export const NavbarCss = styled.div`
   justify-content: space-between;
   align-items: center;
   color: white;
-  background-color: black;
+  background-color: rgba(70, 4, 15, 0.99);
   height: 9vw;
   padding: 3vw 8vmin;
 
@@ -88,6 +88,10 @@ export const Icon = styled.div`
 
   p {
     font-size: 1.05vw;
+  }
+
+  h6 {
+    cursor: pointer;
   }
 
   @media (max-width: 650px) {

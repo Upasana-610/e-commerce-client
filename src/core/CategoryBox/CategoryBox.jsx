@@ -1,12 +1,12 @@
 import React from "react";
 import { CategoryBoxcss, Heading } from "./CategoryBox.style";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CategoryBox = ({ category }) => {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const handleClick = (item) => {
-    history.push(`/collections/${item}`);
+    navigate(`/collections/${item}`);
   };
   return (
     <CategoryBoxcss

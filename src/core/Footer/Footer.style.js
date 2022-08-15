@@ -5,11 +5,12 @@ export const Footercs = styled.div`
   height: 3vw;
   color: white;
   padding-top: 1vw;
-  background-color: black;
+  background-color: rgba(70, 4, 15, 0.99);
   width: 100vw;
   position: fixed;
   left: 0;
   bottom: 0;
+  z-index: 1;
 
   h4 {
     font-size: 2vmin;

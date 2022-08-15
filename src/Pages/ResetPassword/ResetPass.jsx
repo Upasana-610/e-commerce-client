@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Layout/Layout";
 import { Logincss } from "./Login.style";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { register, clearErrors } from "./../../redux";
+import { ResetPassword } from "../../api/password";
 
-function SignUp() {
+function ResetPass() {
+  let params = useParams();
+
+  let token = params.token;
   let [formData, setFormData] = useState({
-    email: "",
-    password: "",
     passwordConfirm: "",
     name: "",
+    token,
   });
   let [err, setErr] = useState("");
-  let error = useSelector((state) => state.autherr);
+  let { autherr } = useSelector((state) => state);
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (error !== err) {
-      if (error.id === "REGISTER_FAIL") {
-        setErr(error);
+    if (autherr !== err) {
+      if (autherr.id === "AUTH_FAIL") {
+        setErr(autherr);
       } else {
-        setErr(error);
+        setErr(autherr);
       }
     }
-  }, [error]);
+  }, [autherr]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,54 +37,27 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearInputs(e);
-    const newUser = { ...formData };
-    register(newUser);
+    const resetData = { ...formData };
+    ResetPassword(resetData);
     //redirect to homepage
-    setTimeout(() => navigate(`/`), 5000);
+    setTimeout(() => navigate(`/login`), 5000);
   };
   const clearInputs = (e) => {
-    e.target.email.value = "";
     e.target.password.value = "";
-    e.target.name.value = "";
+
     e.target.passwordConfirm.value = "";
     setFormData({
-      email: "",
       password: "",
       passwordConfirm: "",
-      name: "",
     });
   };
 
   return (
     <Layout>
       <Logincss>
-        <h2>Sign in to your account</h2>
+        <h2>Reset Your Password</h2>
 
         <form className="form" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="form__label">
-              Name
-            </label>
-            <input
-              type="name"
-              id="#name"
-              name="name"
-              onChange={handleChange}
-              placeholder="name"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              name="email"
-              required
-              id="#email"
-              onChange={handleChange}
-            />
-          </div>
           <div>
             <label htmlFor="password" className="form__label">
               Password
@@ -112,11 +88,11 @@ function SignUp() {
             />
           </div>
 
-          <input className="button" type="submit" value="Login" />
+          <input className="button" type="submit" value="Submit" />
         </form>
       </Logincss>
     </Layout>
   );
 }
 
-export default SignUp;
+export default ResetPass;

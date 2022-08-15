@@ -19,6 +19,7 @@ import { showAlert } from "../../api/alerts";
 import { BASE_URL } from "../../api/password";
 
 // check token and load user
+
 export const loadUser = () => async (dispatch, getState) => {
   //   User Loading
   dispatch({ type: USER_LOADING });

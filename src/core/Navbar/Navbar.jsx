@@ -1,59 +1,53 @@
 import React, { useEffect, useRef, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { slide as Menu } from "react-burger-menu";
+
 import logo from "./../../image/logo.png";
 import { FaUserAlt, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 
 import { NavbarCss, Logo, Icon, Ad } from "./Navbar.style";
-import { fetchnavbarAddata } from "../../api/navbarad";
-import { useHistory } from "react-router-dom";
-import Slider from "../Slider/Slider";
-import { connect } from "react-redux";
+
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux";
 
-const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
+const Navbar = () => {
   let [ad, setAd] = useState([]);
   let [search, setSearch] = useState(false);
+  let dispatch = useDispatch();
 
-  let history = useHistory();
+  let isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  let user = useSelector((state) => state.user.user);
+  let { usercart } = useSelector((state) =>
+    state.user ? state.user : undefined
+  );
+
+  let navigate = useNavigate();
   const logoutUser = () => {
-    logout();
+    dispatch(logout());
 
-    history.push(`/`);
+    navigate(`/`);
   };
 
   const handleClick = () => {
-    history.push(`/login`);
+    navigate(`/login`);
   };
 
   const handleClickSignUp = () => {
-    history.push(`/signup`);
+    navigate(`/signup`);
   };
 
   const cartPage = () => {
-    history.push(`/cart`);
-  };
-
-  const fetchnavData = async () => {
-    try {
-      let data = await fetchnavbarAddata();
-      setAd(data);
-    } catch (error) {
-      console.log(error);
-    }
+    navigate(`/cart`);
   };
 
   const goToAcc = () => {
-    history.push("/me");
+    navigate("/me");
   };
 
   const gotoHome = () => {
-    history.push("/");
+    navigate("/");
   };
-
-  useEffect(() => {
-    fetchnavData();
-  }, []);
 
   // }, 2000);
   const iconStyle = {
@@ -65,7 +59,38 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
   return (
     <>
       <NavbarCss>
-        <GiHamburgerMenu className="iconcls" />
+        <Menu>
+          <a
+            id="Checkout My Github"
+            className="menu-item"
+            href="https://github.com/Upasana-610"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
+          <a
+            id="Resume"
+            className="menu-item"
+            href="https://drive.google.com/file/d/1OO0h6EDTM3LbArvarOJhKsqKkMKWuVzP/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
+          <a
+            id="Contact me on Linked In"
+            className="menu-item"
+            href="https://www.linkedin.com/in/upasana-pan-610upa/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Linked In
+          </a>
+          {/* <a onClick={this.showSettings} className="menu-item--small" href="">
+            Settings
+          </a> */}
+        </Menu>
         <Logo onClick={gotoHome}>
           <img src={logo} />
           <p>Roar</p>
@@ -80,7 +105,11 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
                 {" "}
                 Sign Up
               </h6>
-              <FaUserAlt className="iconcls" onClick={handleClick} />
+              <FaUserAlt
+                className="iconcls"
+                onClick={handleClick}
+                style={{ cursor: "pointer" }}
+              />
             </>
           ) : (
             <>
@@ -104,6 +133,7 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
               className="iconcls"
               style={{ cursor: "pointer" }}
             />
+
             {isAuthenticated === true ? <p>{usercart.length}</p> : ""}
           </>
         </Icon>
@@ -113,25 +143,8 @@ const Navbar = ({ isAuthenticated, user, logout, usercart }) => {
           className={search ? `hidden` : ""}
         /> */}
       </NavbarCss>
-
-      <Slider data={ad} height={"3vw"} color="rgb(34, 26, 26)" />
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.user.isAuthenticated,
-    user: state.user.user,
-    usercart: state.user.user ? state.user.user.cart : undefined,
-    error: state.error,
-  };
-};
-
-const mapDispatchtoprops = (dispatch) => {
-  return {
-    logout: () => dispatch(logout()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchtoprops)(Navbar);
+export default Navbar;

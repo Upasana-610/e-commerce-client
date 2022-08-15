@@ -10,16 +10,11 @@ export const Logincss = styled.div`
   overflow-y: hidden;
   background-color: rgba(96, 58, 58, 0.3);
 
-  h2 {
-    font-size: 3rem;
+  h3 {
+    font-size: 2rem;
     font-weight: 100;
   }
 
-  label {
-    display: block;
-    margin: 0.5rem 0;
-    font-size: 2rem;
-  }
   input {
     margin-bottom: 3rem;
     height: fit-content;
@@ -50,15 +45,6 @@ export const Logincss = styled.div`
     .button:hover {
       cursor: pointer;
       background-color: brown;
-    }
-  }
-
-  .forgot {
-    color: blue;
-    display: inline;
-    :hover {
-      cursor: pointer;
-      border-bottom: 1px solid blue;
     }
   }
 
@@ -96,7 +82,7 @@ export const Logincss = styled.div`
 
     .form {
       .button {
-        font-size: 7vw;
+        font-size: 4vw;
         margin-top: 10vw;
         margin-bottom: 10vw;
         /* padding: 10vw 7vw 8vw 7vw; */

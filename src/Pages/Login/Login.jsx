@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Layout from "../../Layout/Layout";
 import { Logincss } from "./Login.style";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../api/login";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser, register } from "./../../redux";
 import { cartAdding } from "../../api/cartapi";
-function Login({ isAuthenticated, error, register, loginUser, user, id }) {
+
+function Login() {
   let [formData, setFormData] = useState({ email: "", password: "" });
-  let history = useHistory();
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,9 +21,9 @@ function Login({ isAuthenticated, error, register, loginUser, user, id }) {
     clearInputs(e);
 
     //redirect to homepage
-    loginUser(formData);
+    dispatch(loginUser(formData));
 
-    setTimeout(() => history.push(`/`), 5000);
+    setTimeout(() => navigate(`/`), 5000);
   };
   const clearInputs = (e) => {
     e.target.email.value = "";
@@ -65,25 +67,17 @@ function Login({ isAuthenticated, error, register, loginUser, user, id }) {
 
           <input className="button" type="submit" value="Login" />
         </form>
+        <p
+          className="forgot"
+          onClick={() => {
+            navigate("/forgotpassword");
+          }}
+        >
+          Forgot your password?
+        </p>
       </Logincss>
     </Layout>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.user.isAuthenticated,
-    error: state.error,
-    id: state.autherr.id,
-    user: state.user.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginUser: (user) => dispatch(loginUser(user)),
-    register: () => dispatch(register()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

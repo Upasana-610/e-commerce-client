@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../../Layout/Layout";
@@ -6,15 +6,28 @@ import { Auth, Itemcss, Itemmedia, Notauth } from "./Cart.style";
 import { cartDelApi, cartQuantityApi } from "../../api/cartapi";
 import { loadUser } from "../../redux";
 import { AiFillDelete } from "react-icons/ai";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { showAlert } from "../../api/alerts";
+import {
+  delCart,
+  incCart,
+  updateUsercart,
+} from "../../redux/user/usercartActions";
+import { bookTour } from "../../api/stripe";
+import Paybutton from "../../components/Paybutton";
 
-const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
-  let [cart, setCart] = useState([]);
-  let history = useHistory();
-  // setCart(usercart || JSON.parse(localStorage.getItem("cart")) || ["a"]);
-  console.log(user, isAuthenticated);
-  console.log(cart);
+const Cart = () => {
+  let [cart, setCart] = useState(false);
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+
+  let isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  let user = useSelector((state) => state.user.user);
+
+  let usercart = useSelector((state) =>
+    state.user.user ? state.user.user.cart : undefined
+  );
+
   useEffect(() => {
     if (isAuthenticated === true) {
       setCart(usercart);
@@ -25,17 +38,19 @@ const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
     console.log(item);
 
     item.qty += 1;
-    cartQuantityApi(user._id, item.product.id, item.qty, item.selected);
-    userLoad();
+    // cartQuantityApi(user._id, item.product.id, item.qty, item.selected);
+    dispatch(incCart(user._id, item.product.id, item.qty, item.selected));
+    setCart(!cart);
   };
 
   const cartQuantityDnc = (item) => {
     console.log(item);
     if (item.qty - 1 > 0) {
       item.qty -= 1;
-      cartQuantityApi(user._id, item.product.id, item.qty, item.selected);
+      // cartQuantityApi(user._id, item.product.id, item.qty, item.selected);
+      dispatch(incCart(user._id, item.product.id, item.qty, item.selected));
 
-      userLoad();
+      setCart(!cart);
     }
   };
 
@@ -43,23 +58,12 @@ const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
     console.log(item);
     usercart = usercart.filter((itempr) => itempr === item);
     showAlert("success", "Wait till the item gets deleted !");
-    setTimeout(() => {
-      cartQuantityApi(user._id, item.product.id, 0, item.selected);
-    }, 1000);
-
-    setTimeout(() => {
-      cartDelApi(user._id, item.product.id);
-    }, 2000);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
-
-    userLoad();
+    dispatch(delCart(user._id, item.product.id, item.selected));
+    setCart(!cart);
   };
 
   const goToprod = (id) => {
-    history.push(`/productpage/${id}`);
+    navigate(`/productpage/${id}`);
   };
 
   return (
@@ -183,25 +187,11 @@ const Cart = ({ isAuthenticated, user, usercart, userLoad }) => {
             })
           )}
 
-          {usercart.length !== 0 ? <button>Proceed to Pay</button> : ""}
+          {usercart.length !== 0 ? <Paybutton /> : ""}
         </Auth>
       )}
     </Layout>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.user.isAuthenticated,
-    usercart: state.user.user ? state.user.user.cart : undefined,
-    user: state.user.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    userLoad: () => dispatch(loadUser()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

@@ -34,7 +34,7 @@ export const Productcover = styled.div`
     font-size: 5vmin;
   }
   button {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: white;
     margin-top: 5vmin;
     margin-left: 10vmin;
@@ -139,7 +139,7 @@ export const ProductDetails = styled.div`
     margin-top: 3vmin;
   }
   button {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: white;
     margin-top: 5vmin;
     margin-left: 10vmin;
@@ -186,13 +186,13 @@ export const Size = styled.div`
   }
 
   li:hover {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: #ccc;
     cursor: pointer;
     border: 1px solid black;
   }
   .selected {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: #ccc;
   }
 

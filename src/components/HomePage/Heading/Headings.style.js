@@ -4,6 +4,15 @@ export const Heading = styled.h1`
   text-align: center;
   margin: 1% 0;
   font-size: 4vw;
+  font-weight: 100;
+  letter-spacing: 50%;
+`;
+
+export const Heading2 = styled.h1`
+  text-align: center;
+  margin: 1% 0;
+  font-size: 2vw;
+  font-weight: 100;
   letter-spacing: 50%;
 `;
 
@@ -26,7 +35,7 @@ export const Buttoncss = styled.div`
     font-size: 1.25vw;
     padding: 1vw 1.5vw;
     letter-spacing: 3px;
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: white;
     border: none;
   }

@@ -30,7 +30,7 @@ export const Imagebox = styled.div`
   .button {
     display: none;
     font-size: 1vw;
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: white;
     width: 90%;
     margin: 3% 5%;
@@ -109,7 +109,7 @@ export const Size = styled.div`
   }
 
   li:hover {
-    background-color: black;
+    background-color: rgba(70, 4, 15, 0.99);
     color: #ccc;
     cursor: pointer;
     border: 1px solid black;
