@@ -14,12 +14,12 @@ export const bookTour = async ({ usercart, user }) => {
     // 1) Get checkout session from API
     const res = await axios({
       method: "POST",
-      url: `http://localhost:3000/api/v1/bookings/create-checkout-session/`,
+      url: `${BASE_URL}/api/v1/bookings/create-checkout-session/`,
       data: {
         cartItems: usercart,
         userId: user._id,
         jwt: localStorage.getItem("jwt"),
-        clienturl: `http://localhost:3001`,
+        clienturl: `${CLIENT_URL}`,
       },
     });
     if (res.data.url) {
