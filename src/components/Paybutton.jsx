@@ -11,12 +11,6 @@ const Paybutton = () => {
 
   const handleCheckout = () => {
     const res = bookTour({ usercart, user });
-    if (res.data.status === "success") {
-      showAlert("success", "Payment Proccessed successfully!", 20);
-      if (res.data.url) {
-        console.log(res.data.url);
-      }
-    }
   };
   return (
     <>
