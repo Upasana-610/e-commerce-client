@@ -29,6 +29,6 @@ export const bookTour = async ({ usercart, user }) => {
   } catch (err) {
     console.log(err.message);
 
-    showAlert("error", "sorry");
+    showAlert("error", "Payment Unsuccessful", 10);
   }
 };

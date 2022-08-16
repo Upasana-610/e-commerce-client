@@ -1,7 +1,8 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
+import { CLIENT_URL } from "./stripe";
 
-export const BASE_URL = "https://roar-ecommerce-api.herokuapp.com";
+export const BASE_URL = "https://roar-ecommerce-api.herokuapp.com/";
 
 export const updatePassword = async ({
   passwordCurrent,
@@ -37,11 +38,11 @@ export const forgetPassword = async ({ email }) => {
   try {
     const res = await axios({
       method: "POST",
-      url: `http://localhost:3000/api/v1/users/forgotPassword`,
+      url: `${BASE_URL}/api/v1/users/forgotPassword`,
 
       data: {
         email,
-        resetURL: "http://localhost:3001/resetPassword",
+        resetURL: `${CLIENT_URL}/resetPassword`,
       },
     });
 
@@ -65,7 +66,7 @@ export const ResetPassword = async ({ token, password, passwordConfirm }) => {
   try {
     const res = await axios({
       method: "PATCH",
-      url: `http://localhost:3000/api/v1/users/resetPassword/${token}`,
+      url: `${BASE_URL}/api/v1/users/resetPassword/${token}`,
       data: {
         password,
         passwordConfirm,
