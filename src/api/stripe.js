@@ -1,6 +1,7 @@
 /* eslint-disable */
 import axios from "axios";
 import { showAlert } from "./alerts";
+import { cartEmpty } from "./cartapi";
 import { BASE_URL } from "./password";
 
 export const CLIENT_URL = "http://localhost:3001";
@@ -23,7 +24,7 @@ export const bookTour = async ({ usercart, user }) => {
       },
     });
     if (res.data.url) {
-      await cartEmpty(user._id);
+      cartEmpty(user._id);
       window.location.href = res.data.url;
     }
     return res.config;
