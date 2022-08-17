@@ -4,7 +4,7 @@ import { showAlert } from "./alerts";
 import { cartEmpty } from "./cartapi";
 import { BASE_URL } from "./password";
 
-export const CLIENT_URL = "https://roarupa.netlify.app/";
+export const CLIENT_URL = "https://roarupa.netlify.app";
 
 // const stripe = Stripe(
 //   "pk_test_51LVChDSCF8VTOqb3LoCUt621iQIb3raYCPj4BCiNA5UQ9JXihttODGDLHHE0NE31TLKKG2ts5lXU9rNVpeuzx4cj00dsfpP6HX"
