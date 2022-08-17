@@ -24,7 +24,7 @@ export const bookTour = async ({ usercart, user }) => {
       },
     });
     if (res.data.url) {
-      cartEmpty(user._id);
+      await cartEmpty(user._id);
       window.location.href = res.data.url;
     }
     return res.config;
