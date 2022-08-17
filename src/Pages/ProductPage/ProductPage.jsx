@@ -16,6 +16,7 @@ import { cartAdding } from "../../api/cartapi";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { addCart } from "../../redux/user/usercartActions";
+import ProductPageComp from "../../components/ProductPageComp";
 
 const ProductPage = () => {
   let params = useParams();
@@ -148,141 +149,29 @@ const ProductPage = () => {
                   <Skeleton width={800} height={50} key={idx} />
                 ))
             )}
+            <button onClick={cartAdd}>Add to Cart</button>
           </div>
 
           <ProductDetails pColor={product.pColor}>
-            <p className="Big">{product.pName}</p>
-            <p className="Big">Rs. {product.pPrice}</p>
-            <h7>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</h7>
-            <p className="color">
-              Color- <span>{product.pColor}</span>{" "}
-            </p>
-            <div className="colorCircle" bgcolor="#000000"></div>
-            <Size>
-              <h2>Size</h2>
-              <ul>
-                {product.length !== 0 && product.pSize
-                  ? product.pSize.map((item, idx) => (
-                      <li
-                        onClick={(e) => {
-                          selectedSize(e);
-                          // console.log(selected);
-                        }}
-                        className={item === selected ? "selected" : ""}
-                        key={idx}
-                      >
-                        {item}
-                      </li>
-                    ))
-                  : ""}
-              </ul>
-            </Size>
-            <Qty>
-              <h3>Quantity</h3>
-              <div>
-                <p
-                  className="qtyp bt"
-                  onClick={() => {
-                    changeQty("-");
-                  }}
-                >
-                  -
-                </p>
-                <p className="qtyp">{qty}</p>
-                <p
-                  className="qtyp bt"
-                  onClick={() => {
-                    changeQty("+");
-                  }}
-                >
-                  +
-                </p>
-              </div>
-            </Qty>
-            <dl>
-              <h3>Description</h3>
-              <dd>{product.pDescription}</dd>
-              <h3>Occassion</h3>
-              <dd>{product.pOccasion}</dd>
-              <h3>Fabric</h3>
-              <dd>{product.pFabric}</dd>
-              <h3>Fit</h3>
-              <dd>{product.pFit}</dd>
-              <h3>Model Size</h3>
-              <dd>{product.pModelSize}</dd>
-              <h3>Model Height</h3>
-              <dd>{product.pModelHeight}</dd>
-              <h3>Wash</h3>
-              <dd>{product.pWash}</dd>
-            </dl>
-            <button onClick={cartAdd}>Add to Cart</button>
+            <ProductPageComp
+              product={product}
+              cartAdd={cartAdd}
+              selected={selected}
+              selectedSize={selectedSize}
+              changeQty={changeQty}
+              qty={qty}
+            />
           </ProductDetails>
         </Productcss>
         <div className="desc">
-          <p className="Big">{product.pName}</p>
-          <p className="Big">Rs. {product.pPrice}</p>
-          <p>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</p>
-          <p className="color">
-            Color- <span>{product.pColor}</span>{" "}
-          </p>
-          <div className="colorCircle" bgcolor="#000000"></div>
-          <Size>
-            <h3>Size</h3>
-            <ul>
-              {product.length !== 0 && product.pSize
-                ? product.pSize.map((item, idx) => (
-                    <li
-                      onClick={(e) => {
-                        selectedSize(e);
-                      }}
-                      className={item === selected ? "selected" : ""}
-                      key={idx}
-                    >
-                      {item}
-                    </li>
-                  ))
-                : ""}
-            </ul>
-          </Size>
-          <Qty>
-            <h3>Quantity</h3>
-            <div>
-              <p
-                className="qtyp bt"
-                onClick={() => {
-                  changeQty("-");
-                }}
-              >
-                -
-              </p>
-              <p className="qtyp">{qty}</p>
-              <p
-                className="qtyp bt"
-                onClick={() => {
-                  changeQty("+");
-                }}
-              >
-                +
-              </p>
-            </div>
-          </Qty>
-          <p>
-            <h5>Description</h5>
-            <p>{product.pDescription}</p>
-            <h5>Occassion</h5>
-            <p>{product.pOccasion}</p>
-            <h5>Fabric</h5>
-            <p>{product.pFabric}</p>
-            <h5>Fit</h5>
-            <p>{product.pFit}</p>
-            <h5>Model Size</h5>
-            <p>{product.pModelSize}</p>
-            <h5>Model Height</h5>
-            <p>{product.pModelHeight}</p>
-            <h5>Wash</h5>
-            <p>{product.pWash}</p>
-          </p>
-          <button onClick={cartAdd}>Add to Cart</button>
+          <ProductPageComp
+            product={product}
+            cartAdd={cartAdd}
+            selectedSize={selectedSize}
+            changeQty={changeQty}
+            selected={selected}
+            qty={qty}
+          />
         </div>
       </Productcover>
     </Layout>

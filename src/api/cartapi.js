@@ -63,3 +63,16 @@ export const cartDelApi = async (userid, productid, selected) => {
     if (res) showAlert("success", "Item deleted Successfully!");
   } catch (err) {}
 };
+
+export const cartEmpty = async (userid) => {
+  try {
+    const res = await axios({
+      method: "PUT",
+      url: `${BASE_URL}/api/v1/users/cartempty`,
+      data: {
+        userid,
+      },
+    });
+    if (res) showAlert("success", "Cart Items deleted Successfully!", 10);
+  } catch (err) {}
+};

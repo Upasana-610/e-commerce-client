@@ -17,6 +17,37 @@ export const Details = styled.div`
     -webkit-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+    padding-bottom: 6rem;
+  }
+
+  h3 {
+    margin: 1vw;
+    margin-top: 3vw;
+    color: #23088d;
+    font-size: 1.5vw;
+    border-bottom: 1px solid #23088d;
+    display: inline;
+  }
+  h3:hover {
+    color: #5f0808;
+
+    cursor: pointer;
+  }
+
+  .write {
+    h3 {
+      margin: 1vw;
+      margin-top: 3vw;
+      color: #23088d;
+      font-size: 1.5vw;
+      border-bottom: 1px solid #23088d;
+      display: inline;
+    }
+    h3:hover {
+      color: #5f0808;
+
+      cursor: pointer;
+    }
   }
 
   h1,
@@ -26,14 +57,6 @@ export const Details = styled.div`
     font-size: 1.5vw;
   }
 
-  h3 {
-    font-size: 1vw;
-    border-bottom: blue solid 0.05vw;
-  }
-
-  h3:hover {
-    color: blue;
-  }
   .button {
     display: block;
     background-color: #401c03;
@@ -62,12 +85,14 @@ export const Details = styled.div`
   .upload {
     position: absolute;
     left: 50%;
-    top: 105%;
+    top: 85%;
+
+    width: 10vw !important;
     transform: translate(-50%, 0);
   }
 
   .upload:hover {
-    border-bottom: 1px solid #401c03;
+    /* border-bottom: 1px solid #401c03; */
     cursor: pointer;
   }
 

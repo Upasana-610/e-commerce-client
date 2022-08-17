@@ -17,6 +17,7 @@ import Account from "./Pages/Account/Account";
 import ScrollToTop from "./core/ScrollToTop";
 import ForgotPass from "./Pages/forgotPasswords/ForgotPass";
 import ResetPass from "./Pages/ResetPassword/ResetPass";
+import MyOrder from "./Pages/MyOrders/MyOrder";
 
 function App() {
   useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
               <Route exact path="/cart" element={<Cart />} />
 
               <Route exact path="/me" element={<Account />} />
+              <Route exact path="/myorders" element={<MyOrder />} />
             </Routes>
           </ScrollToTop>
         </BrowserRouter>

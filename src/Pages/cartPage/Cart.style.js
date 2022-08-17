@@ -33,6 +33,7 @@ export const Itemcss = styled.div`
   -moz-box-shadow: 0px -1px 13px 2px rgba(94, 88, 90, 0.55);
   box-shadow: 0px -1px 13px 2px rgba(94, 88, 90, 0.55);
   margin: 2vmin;
+  padding: 0.05vmin;
   :hover {
     cursor: pointer;
     background-color: beige;
@@ -47,8 +48,10 @@ export const Itemcss = styled.div`
     border: 0.5px solid rgba(94, 88, 90, 0.55);
   }
   p {
+    font-size: 2vmin;
+
     p {
-      font-size: 4vmin;
+      font-size: 2vmin;
     }
     p:hover {
       cursor: pointer;

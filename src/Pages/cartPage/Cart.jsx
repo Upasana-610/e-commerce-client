@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../../Layout/Layout";
 import { Auth, Itemcss, Itemmedia, Notauth } from "./Cart.style";
-import { cartDelApi, cartQuantityApi } from "../../api/cartapi";
+import { cartDelApi, cartEmpty, cartQuantityApi } from "../../api/cartapi";
 import { loadUser } from "../../redux";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -185,6 +185,18 @@ const Cart = () => {
                 </>
               );
             })
+          )}
+          {usercart.length !== 0 ? (
+            <button
+              onClick={() => {
+                cartEmpty(user._id);
+                dispatch(loadUser());
+              }}
+            >
+              Delete All Items
+            </button>
+          ) : (
+            ""
           )}
 
           {usercart.length !== 0 ? <Paybutton /> : ""}

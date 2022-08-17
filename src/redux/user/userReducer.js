@@ -8,6 +8,7 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_CART,
+  USER_ORDER,
 } from "./userTypes";
 
 const initialState = {
@@ -16,14 +17,20 @@ const initialState = {
   isLoading: false,
   user: null,
   usercart: [],
+  myOrder: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case USER_CART:
-      localStorage.setItem("cart", JSON.stringify(state.usercart));
+    case USER_ORDER:
       return {
         ...state,
+        myOrder: action.payload === undefined ? [] : action.payload,
+      };
+    case USER_CART:
+      return {
+        ...state,
+        usercart: [...state.usercart, action.payload],
       };
     case USER_LOADING:
       return {
@@ -31,7 +38,6 @@ const reducer = (state = initialState, action) => {
         isLoading: true,
       };
     case USER_LOADED: {
-      localStorage.setItem("cart", JSON.stringify(action.payload.user.cart));
       return {
         ...state,
         isAuthenticated: true,

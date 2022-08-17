@@ -10,6 +10,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  USER_ORDER,
 } from "./userTypes";
 
 import { GET_ERRORS, CLEAR_ERRORS } from "./../usererror/errorTypes";
@@ -17,8 +18,15 @@ import { login } from "../../api/login";
 import { showAlert } from "../../api/alerts";
 
 import { BASE_URL } from "../../api/password";
+import { fetchMyorder } from "../../api/order";
 
 // check token and load user
+
+export const LoadMyorder = () => async (dispatch, getState) => {
+  let orders = await fetchMyorder();
+  console.log(orders);
+  dispatch({ type: USER_ORDER, payload: orders });
+};
 
 export const loadUser = () => async (dispatch, getState) => {
   //   User Loading
@@ -31,10 +39,12 @@ export const loadUser = () => async (dispatch, getState) => {
         user: res.data.data.data,
         token: localStorage.getItem("jwt"),
       };
+      console.log(userData);
       dispatch({
         type: USER_LOADED,
         payload: userData,
       });
+      dispatch(LoadMyorder());
     })
     .catch((err) => {
       console.log(err.response);
@@ -70,6 +80,7 @@ export const loginUser = ({ email, password }) => {
       dispatch({
         type: CLEAR_ERRORS,
       });
+      dispatch(LoadMyorder());
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -106,6 +117,7 @@ export const register =
         dispatch({
           type: CLEAR_ERRORS,
         });
+        dispatch(LoadMyorder());
         showAlert("success", "Signed up successfully!");
       })
       .catch((err) => {

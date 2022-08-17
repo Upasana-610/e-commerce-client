@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { updatePassword } from "../../api/password";
 import { uploadPhoto } from "../../api/uploadphotoapi";
 import Layout from "../../Layout/Layout";
@@ -13,6 +14,7 @@ const Account = () => {
   });
   let [upload, setupload] = useState(false);
   let [file, setFile] = useState(null);
+  let navigate = useNavigate();
 
   let isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   let user = useSelector((state) => state.user.user);
@@ -98,6 +100,13 @@ const Account = () => {
                 <p>{user.name}</p>
                 <h1>Email</h1>
                 <p>{user.email}</p>
+                <h3
+                  onClick={() => {
+                    navigate(`/myorders`);
+                  }}
+                >
+                  My Orders
+                </h3>
               </div>
             </span>
             <span className="passworddiv">
