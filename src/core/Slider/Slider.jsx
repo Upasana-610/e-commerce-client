@@ -17,28 +17,24 @@ const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
     // variableWidth: true,
   };
 
-  let styles = {
-    height: "90%",
-    width: "70%",
-  };
   console.log(data);
   return (
     <>
       {" "}
       {data.length !== 0 ? (
         <Ad>
-          (
           <Slider {...settings}>
-            {data.map((item, idx) => (
-              <img
-                src={`./img/AdSlider/${item.adImg}`}
-                alt={"ad"}
-                style={{ width: "8%" }}
-                key={idx}
-              />
-            ))}
+            {data.map((item, idx) => {
+              return (
+                <img
+                  src={`./img/AdSlider/${item.adImg}`}
+                  alt={"ad"}
+                  style={{ width: "8%" }}
+                  key={idx}
+                />
+              );
+            })}
           </Slider>
-          )
         </Ad>
       ) : (
         <Skeleton height={500} />

@@ -95,13 +95,8 @@ export const loginUser = ({ email, password }) => {
 export const register =
   ({ email, password, passwordConfirm, name }) =>
   (dispatch, getState) => {
-    const config = {
-      headers: {
-        "Content-Type": "application.json",
-      },
-    };
     const h = JSON.stringify({ name, email, password, passwordConfirm });
-
+    console.log("register");
     axios
       .post(`${BASE_URL}/api/v1/users/signup`, h, tokenConfig(getState))
       .then((res) => {

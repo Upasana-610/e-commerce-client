@@ -35,7 +35,7 @@ const ProductPageComp = ({
     <>
       <p className="Big">{product.pName}</p>
       <p className="Big">Rs. {product.pPrice}</p>
-      <h7>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</h7>
+      <h4>{product.pOffer ? `Discount ${product.pOffer} % ` : ""}</h4>
       <p className="color">
         Color- <span>{product.pColor}</span>{" "}
       </p>

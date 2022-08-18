@@ -19,10 +19,6 @@ function AdImgSlider() {
   }, []);
   return (
     <>
-      {/* <div>ghyjgh</div> */}
-      {/* <img src={`./img/AdSlider/${adImg[0].adImg}`} /> */}
-      {/* <Slider data={adImg} height={"125vx"} /> */}
-
       <Slidercomp data={adImg} height={`120%`} />
     </>
   );

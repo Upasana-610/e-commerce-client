@@ -3,7 +3,7 @@ import Layout from "../../Layout/Layout";
 import { Logincss } from "./Login.style";
 import { useNavigate } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "./../../redux";
 
 function SignUp() {
@@ -16,6 +16,7 @@ function SignUp() {
   let [err, setErr] = useState("");
   let error = useSelector((state) => state.autherr);
   let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   useEffect(() => {
     if (error !== err) {
@@ -35,7 +36,7 @@ function SignUp() {
     e.preventDefault();
     clearInputs(e);
     const newUser = { ...formData };
-    register(newUser);
+    dispatch(register(newUser));
     //redirect to homepage
     setTimeout(() => navigate(`/`), 5000);
   };
@@ -112,7 +113,7 @@ function SignUp() {
             />
           </div>
 
-          <input className="button" type="submit" value="Login" />
+          <input className="button" type="submit" value="Sign Up" />
         </form>
       </Logincss>
     </Layout>

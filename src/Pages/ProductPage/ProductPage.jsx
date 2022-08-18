@@ -5,14 +5,8 @@ import { showAlert } from "../../api/alerts";
 import { fetchSingleProduct } from "../../api/ProductsApi";
 import Layout from "../../Layout/Layout";
 
-import {
-  Productcover,
-  Productcss,
-  ProductDetails,
-  Qty,
-  Size,
-} from "./ProductPage.style";
-import { cartAdding } from "../../api/cartapi";
+import { Productcover, Productcss, ProductDetails } from "./ProductPage.style";
+
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { addCart } from "../../redux/user/usercartActions";
@@ -35,13 +29,12 @@ const ProductPage = () => {
       state.user.user ? state.user.user.cart : undefined
     ) || undefined;
 
-  let [cart, setCart] = useState(usercart);
-
   const singleProduct = async () => {
     let result = await fetchSingleProduct(params.product);
-
-    setProduct(result.data.data);
-    setCurr(product.pImages[0]);
+    if (result) {
+      setProduct(result.data.data);
+      setCurr(product.length && product.pImages ? product.pImages[0] : "");
+    }
   };
 
   // useEffect
@@ -50,10 +43,8 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated === true) {
-      setCart(usercart);
-    }
-  }, [isAuthenticated]);
+    console.log(selected);
+  }, [selected]);
 
   // Qty
   const changeQty = (sign) => {
@@ -70,6 +61,7 @@ const ProductPage = () => {
     if (e.target.textContent !== selected) {
       console.log("a");
       setSelected(e.target.textContent.trim());
+      console.log("func", selected);
     } else setSelected(-1);
   };
 
@@ -81,7 +73,6 @@ const ProductPage = () => {
       showAlert("error", "Please select size and give quantity !");
     else {
       let unique = -1;
-      console.log(cart);
 
       usercart.forEach((item, idx) => {
         if (item.product.id === product.id && item.selected === selected) {
@@ -97,18 +88,18 @@ const ProductPage = () => {
           "Wait for the item to get added in  cart successfully!",
           1000
         );
+        console.log(selected);
         usercart.push({ product, selected, qty });
-        setCart(usercart);
+
         // setTimeout(() => {
         // cartAdding(user._id, cart[cart.length - 1]);
-        dispatch(addCart(user._id, cart[cart.length - 1]));
+        console.log(usercart);
+        dispatch(addCart(user._id, usercart[usercart.length - 1]));
 
         setToggleCart(!toggelcart);
       }
     }
   };
-
-  console.log(product);
 
   return product.length !== 0 && product.pImages ? (
     <Layout>
