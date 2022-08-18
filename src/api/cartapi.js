@@ -43,7 +43,6 @@ export const cartQuantityApi = async (userid, productid, qty, sel) => {
       },
     });
     return res;
-    console.log("dndns");
   } catch (err) {}
 };
 
