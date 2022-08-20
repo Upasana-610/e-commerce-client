@@ -202,6 +202,13 @@ const Cart = () => {
           {usercart.length !== 0 ? <Paybutton /> : ""}
         </Auth>
       )}
+
+      <br />
+      <br />
+      <h2 style={{ color: "red", padding: "35px" }}>
+        ****Please use Card no 4242 4242 4242 4242 for checking out on stripe
+        payments****
+      </h2>
     </Layout>
   );
 };
