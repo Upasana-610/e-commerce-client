@@ -113,7 +113,10 @@ export const register =
           type: CLEAR_ERRORS,
         });
         dispatch(LoadMyorder());
-        showAlert("success", "Signed up successfully!");
+        showAlert(
+          "success",
+          "Signed up successfully! A welcoming email has been sent to you to your registerd mail-id."
+        );
       })
       .catch((err) => {
         dispatch({
