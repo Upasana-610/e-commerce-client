@@ -47,7 +47,7 @@ const ProductPageComp = ({
             ? product.pSize.map((item, idx) => (
                 <li
                   onClick={(e) => {
-                    selectedSize(e);
+                    selectedSize(e, selected);
                     // console.log(selected);
                   }}
                   className={item === selected ? "selected" : ""}

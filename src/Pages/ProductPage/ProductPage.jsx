@@ -57,8 +57,8 @@ const ProductPage = () => {
   };
 
   // size
-  const selectedSize = (e) => {
-    if (e.target.textContent !== selected) {
+  const selectedSize = (e, sel) => {
+    if (e.target.textContent !== sel) {
       console.log("a");
       setSelected(e.target.textContent.trim());
       console.log("func", selected);
