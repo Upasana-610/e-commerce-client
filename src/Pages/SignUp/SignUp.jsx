@@ -38,7 +38,7 @@ function SignUp() {
     const newUser = { ...formData };
     dispatch(register(newUser));
     //redirect to homepage
-    setTimeout(() => navigate(`/`), 5000);
+    setTimeout(() => navigate(`/`), 8000);
   };
   const clearInputs = (e) => {
     e.target.email.value = "";
