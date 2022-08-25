@@ -72,7 +72,7 @@ const Navbar = () => {
           <a
             id="Resume"
             className="menu-item"
-            href="https://drive.google.com/file/d/1OO0h6EDTM3LbArvarOJhKsqKkMKWuVzP/view?usp=sharing"
+            href="https://drive.google.com/file/d/1vh1ZcwKOnB9Jihp-L_NcZs1wDdeM0_bd/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
           >
