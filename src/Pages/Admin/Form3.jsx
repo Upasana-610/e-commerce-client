@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Form3 = ({ page, setPage, formData, setFormData }) => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let validate = false;
@@ -13,7 +13,7 @@ const Form3 = ({ page, setPage, formData, setFormData }) => {
     console.log(validate);
 
     if (validate) {
-      let res = createProduct({ formData, setFormData });
+      let res = await createProduct({ formData, setFormData });
       console.log(res);
       if (res === true) {
         toast("Product Created Successfully!");
