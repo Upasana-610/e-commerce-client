@@ -17,6 +17,9 @@ function SignUp() {
   let error = useSelector((state) => state.autherr);
   let navigate = useNavigate();
   let dispatch = useDispatch();
+  let { email } = useSelector((state) =>
+    state.user.user !== null ? state.user.user : { undefined }
+  );
 
   useEffect(() => {
     if (error !== err) {
@@ -37,8 +40,12 @@ function SignUp() {
     clearInputs(e);
     const newUser = { ...formData };
     dispatch(register(newUser));
+
+    email === "admin@example.com"
+      ? setTimeout(() => navigate(`/admin`), 8000)
+      : setTimeout(() => navigate(`/`), 8000);
+
     //redirect to homepage
-    setTimeout(() => navigate(`/`), 8000);
   };
   const clearInputs = (e) => {
     e.target.email.value = "";

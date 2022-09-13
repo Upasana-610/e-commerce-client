@@ -103,3 +103,104 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item:hover {
   color: #ffffff;
 }
+
+/*ADMIN FORM*/
+.formdiv {
+  height: 150vh;
+  width: 100%;
+  overflow-y: scroll;
+
+  font-size: 15px;
+  background: rgb(254, 251, 251);
+  background: linear-gradient(
+    18deg,
+    rgba(254, 251, 251, 1) 0%,
+    rgba(223, 190, 137, 1) 58%
+  );
+  position: relative;
+}
+.formdiv form {
+  /*  */
+  padding: 20px 40px;
+  padding-top: 50px;
+  /* position realtive in container */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px 4px rgba(145, 94, 38, 0.75);
+  -webkit-box-shadow: 0px 0px 12px 4px rgba(145, 94, 38, 0.75);
+  -moz-box-shadow: 0px 0px 12px 4px rgba(145, 94, 38, 0.75);
+}
+
+.formdiv form .button-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formdiv form button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.8rem;
+  float: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.formdiv form .button-area input,
+.formdiv form .button-area button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.formdiv form .button-area input:hover,
+.formdiv form .button-area button:hover,
+.formdiv button:hover {
+  background-color: aquamarine;
+  cursor: pointer;
+}
+.formdiv form .text {
+  display: block;
+  border: none;
+  box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+  -moz-box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.Availsize {
+  margin: 10px 0 10px 0;
+}
+
+.Availsize input {
+  margin-right: 2px;
+  font-size: 4rem;
+}
+
+.formdiv form textarea {
+  display: block;
+  border: none;
+  box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+  -moz-box-shadow: 0px 0px 2px 2px rgba(94, 91, 84, 0.75) inset;
+
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  margin: auto;
+  margin-bottom: 30px;
+}

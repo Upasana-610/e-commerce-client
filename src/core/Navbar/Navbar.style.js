@@ -73,7 +73,7 @@ export const Icon = styled.div`
   display: inline-flex;
   justify-content: space-between;
 
-  div {
+  .profile {
     border-radius: 100%;
     height: 3vw;
     width: 3vw;
@@ -81,6 +81,10 @@ export const Icon = styled.div`
 
     background: url(${({ photo }) => photo}) no-repeat center;
     background-size: auto 100%;
+  }
+  .admin:hover {
+    color: green;
+    cursor: pointer;
   }
   div:hover {
     cursor: pointer;

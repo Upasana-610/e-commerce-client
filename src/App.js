@@ -18,6 +18,8 @@ import ScrollToTop from "./core/ScrollToTop";
 import ForgotPass from "./Pages/forgotPasswords/ForgotPass";
 import ResetPass from "./Pages/ResetPassword/ResetPass";
 import MyOrder from "./Pages/MyOrders/MyOrder";
+import AdminHome from "./Pages/Admin/AdminHome/AdminHome";
+import AllProducts from "./Pages/Admin/AllProducts";
 
 function App() {
   useEffect(() => {
@@ -60,6 +62,8 @@ function App() {
 
               <Route exact path="/me" element={<Account />} />
               <Route exact path="/myorders" element={<MyOrder />} />
+              <Route exact path="/admin" element={<AdminHome />} />
+              <Route exact path="/allproducts" element={<AllProducts />} />
             </Routes>
           </ScrollToTop>
         </BrowserRouter>

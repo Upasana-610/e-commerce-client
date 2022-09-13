@@ -10,6 +10,7 @@ export const Heading = styled.h1`
 
 export const Categoriescss = styled.div`
   margin: 0 8% 5% 8%;
+  margin-bottom: 8rem;
   display: grid;
   grid-template-columns: auto auto auto;
 `;

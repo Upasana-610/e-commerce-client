@@ -80,7 +80,9 @@ export const loginUser = ({ email, password }) => {
       dispatch({
         type: CLEAR_ERRORS,
       });
+
       dispatch(LoadMyorder());
+      return email === "admin@example.com" ? "admin" : "";
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,

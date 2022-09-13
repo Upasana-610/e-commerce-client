@@ -12,6 +12,10 @@ function Login() {
   let navigate = useNavigate();
   let dispatch = useDispatch();
 
+  let { email } = useSelector((state) =>
+    state.user.user !== null ? state.user.user : { undefined }
+  );
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -21,9 +25,13 @@ function Login() {
     clearInputs(e);
 
     //redirect to homepage
-    dispatch(loginUser(formData));
+    let res = await dispatch(loginUser(formData));
 
-    setTimeout(() => navigate(`/`), 5000);
+    console.log(res);
+
+    email === "admin@example.com"
+      ? setTimeout(() => navigate(`/admin`), 8000)
+      : setTimeout(() => navigate(`/`), 8000);
   };
   const clearInputs = (e) => {
     e.target.email.value = "";

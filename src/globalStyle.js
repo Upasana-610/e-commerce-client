@@ -15,7 +15,7 @@ ${"" /* font-family: 'Roboto', sans-serif; */}
 body {
   max-width: 100%;
   overflow-x: hidden;
-  padding-bottom: 8vw;
+  
 }
 
 html{

@@ -28,5 +28,5 @@ export const Footercs = styled.div`
 `;
 
 export const Footercss = styled.div`
-  height: 5vw;
+  /* height: 5vw; */
 `;

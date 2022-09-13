@@ -22,6 +22,10 @@ const Navbar = () => {
     state.user ? state.user : undefined
   );
 
+  let { email } = useSelector((state) =>
+    state.user.user !== null ? state.user.user : { undefined }
+  );
+
   let navigate = useNavigate();
   const logoutUser = () => {
     dispatch(logout());
@@ -117,7 +121,19 @@ const Navbar = () => {
               <h6 className="iconcls" onClick={logoutUser}>
                 Logout
               </h6>
-              <div onClick={goToAcc} className="iconcls"></div>
+              <div onClick={goToAcc} className="iconcls profile"></div>
+              {email === "admin@example.com" ? (
+                <h2
+                  className="admin"
+                  onClick={() => {
+                    navigate(`/admin`);
+                  }}
+                >
+                  Admin
+                </h2>
+              ) : (
+                ""
+              )}
             </>
           )}
           <>
