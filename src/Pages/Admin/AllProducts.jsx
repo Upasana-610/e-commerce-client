@@ -17,6 +17,8 @@ const AllProducts = () => {
       const value = await fetchAllProducts();
 
       setProducts(value.data.data);
+
+      console.log(value.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,6 +29,7 @@ const AllProducts = () => {
   useEffect(() => {
     getProductData();
   }, [toggle]);
+
   return (
     <Layout>
       <div

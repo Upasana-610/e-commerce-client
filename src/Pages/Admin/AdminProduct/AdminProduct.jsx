@@ -6,6 +6,9 @@ import { ProductContainer } from "./AdminProduct.style";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { DeleteSingleProduct } from "../../../api/ProductsApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { showAlert } from "../../../api/alerts";
 
 const AdminProduct = ({ product, toggle, setToggle }) => {
   let navigate = useNavigate();
@@ -33,8 +36,9 @@ const AdminProduct = ({ product, toggle, setToggle }) => {
           </div>
           <p className="delete">
             <AiFillDelete
-              onClick={() => {
-                DeleteSingleProduct(product._id);
+              onClick={async () => {
+                await DeleteSingleProduct(product._id);
+                showAlert("success", "Product Deleted Successfully", 4);
                 setToggle(!toggle);
               }}
             />
