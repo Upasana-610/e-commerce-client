@@ -46,4 +46,8 @@ export const ProductContainer = styled.div`
 
     color: red;
   }
+  @media (max-width: 857px) {
+    padding: 5px;
+    margin: 1rem 5rem;
+  }
 `;

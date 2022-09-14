@@ -204,3 +204,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: auto;
   margin-bottom: 30px;
 }
+
+@media (max-width: 580px) {
+  .formdiv {
+    height: 110vh;
+  }
+  .formdiv form {
+    /*  */
+    padding: 10px 20px;
+    padding-top: 25px;
+  }
+  .formdiv form .text {
+    width: 280px;
+  }
+}
