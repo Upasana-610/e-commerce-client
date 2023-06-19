@@ -97,11 +97,28 @@ export const Icon = styled.div`
   h6 {
     cursor: pointer;
   }
+  a {
+    font-size: 20px;
+  }
 
   @media (max-width: 650px) {
     div {
       height: 5vw;
       width: 5vw;
+    }
+
+    a {
+      font-size: 15px;
+    }
+
+    .profile {
+      border-radius: 100%;
+      height: 35px;
+      width: 35px;
+      margin-left: 3vw;
+
+      background: url(${({ photo }) => photo}) no-repeat center;
+      background-size: auto 100%;
     }
 
     p {

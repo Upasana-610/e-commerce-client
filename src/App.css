@@ -19,7 +19,7 @@
   background-color: #20bf6b;
 }
 .alert--error {
-  background-color: #5f0a0a;
+  background-color: #fc0000;
 }
 
 /* Position and sizing of burger button */
@@ -208,11 +208,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 @media (max-width: 580px) {
   .formdiv {
     height: 110vh;
+    margin-bottom: 40px;
   }
   .formdiv form {
     /*  */
     padding: 10px 20px;
-    padding-top: 25px;
+    padding-top: 35px;
+    margin-top: 43px;
   }
   .formdiv form .text {
     width: 280px;

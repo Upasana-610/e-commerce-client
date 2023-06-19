@@ -82,7 +82,7 @@ export const loginUser = ({ email, password }) => {
       });
 
       dispatch(LoadMyorder());
-      return email === "admin@example.com" ? "admin" : "";
+      return email === "admin@example.com" ? "admin" : "success";
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,

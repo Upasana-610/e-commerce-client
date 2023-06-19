@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Layout/Layout";
 import { Logincss } from "./Login.style";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "./../../redux";
@@ -64,7 +64,16 @@ function SignUp() {
     <Layout>
       <Logincss>
         <h2>Sign in to your account</h2>
-
+        <a
+          onClick={() => navigate(`/login`)}
+          style={{
+            borderBottom: "solid blue 1px",
+            cursor: "pointer",
+            color: "blue",
+          }}
+        >
+          Already Have an Account?Log in
+        </a>
         <form className="form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name" className="form__label">

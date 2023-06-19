@@ -118,9 +118,7 @@ const Navbar = () => {
           ) : (
             <>
               {" "}
-              <h6 className="iconcls" onClick={logoutUser}>
-                Logout
-              </h6>
+              <a onClick={logoutUser}>Logout</a>
               <div onClick={goToAcc} className="iconcls profile"></div>
               {email === "admin@example.com" ? (
                 <h2
@@ -128,6 +126,7 @@ const Navbar = () => {
                   onClick={() => {
                     navigate(`/admin`);
                   }}
+                  style={{ fontSize: "8px", color: "yellow" }}
                 >
                   Admin
                 </h2>

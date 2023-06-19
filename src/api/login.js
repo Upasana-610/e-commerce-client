@@ -25,9 +25,9 @@ export const login = async ({ email, password }) => {
       return res.data.data.user;
     }
   } catch (err) {
-    setTimeout(() => {
-      window.location.assign("/login");
-    });
+    // setTimeout(() => {
+    //   window.location.assign("/login");
+    // });
     showAlert("error", "Login Error", 2);
   }
 };

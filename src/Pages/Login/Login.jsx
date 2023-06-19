@@ -27,11 +27,12 @@ function Login() {
     //redirect to homepage
     let res = await dispatch(loginUser(formData));
 
-    console.log(res);
-
-    email === "admin@example.com"
-      ? setTimeout(() => navigate(`/admin`), 8000)
-      : setTimeout(() => navigate(`/`), 8000);
+    // console.log(res);
+    res
+      ? email === "admin@example.com"
+        ? setTimeout(() => navigate(`/admin`), 8000)
+        : setTimeout(() => navigate(`/`), 8000)
+      : setTimeout(() => navigate(`/login`), 2000);
   };
   const clearInputs = (e) => {
     e.target.email.value = "";
