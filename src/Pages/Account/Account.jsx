@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { logout } from "../../redux";
 import { updatePassword } from "../../api/password";
 import { uploadPhoto } from "../../api/uploadphotoapi";
 import Layout from "../../Layout/Layout";
 import { Details } from "./Account.style";
+import { useDispatch } from "react-redux";
+import { showAlert } from "../../api/alerts";
 
 const Account = () => {
   let [formData, setFormData] = useState({
@@ -15,6 +18,7 @@ const Account = () => {
   let [upload, setupload] = useState(false);
   let [file, setFile] = useState(null);
   let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   let isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   let user = useSelector((state) => state.user.user);
@@ -27,7 +31,11 @@ const Account = () => {
     clearInputs(e);
 
     //redirect to homepage
-    updatePassword(formData);
+    let res = await updatePassword(formData);
+    res
+      ? dispatch(logout())
+      : showAlert("error", "Could not change password! Try again.", 2);
+    res ? navigate(`/login`) : navigate(`/me`);
   };
 
   const clearInputs = (e) => {

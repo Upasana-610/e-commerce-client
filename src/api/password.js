@@ -28,10 +28,11 @@ export const updatePassword = async ({
       // window.setTimeout(() => {
       //   location.assign("/");
       // }, 1500);
+      return true;
     }
   } catch (err) {
     console.log(err.response);
-    showAlert("error", err.response.message, 2);
+    // showAlert("error", err.response.message, 2);
   }
 };
 

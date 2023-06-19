@@ -34,10 +34,7 @@ export const login = async ({ email, password }) => {
 
 export const logout = async () => {
   try {
-    const res = await axios({
-      method: "GET",
-      url: "/api/v1/users/logout",
-    });
+    const res = await axios.get("/api/v1/users/logout");
     showAlert("success", "Logged Out Successfully");
     if ((res.data.status = "success")) location.reload(true);
   } catch (err) {
