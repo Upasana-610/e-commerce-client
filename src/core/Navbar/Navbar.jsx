@@ -76,7 +76,7 @@ const Navbar = () => {
           <a
             id="Resume"
             className="menu-item"
-            href="https://drive.google.com/file/d/1WoF89w8gamhTccJ6d3cuHgrKnhNE7Pvg/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1lFVH-YINOcpMbGDzba0QNZlWed3vOc3T/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
           >
