@@ -30,8 +30,8 @@ function Login() {
     // console.log(res);
     res
       ? email === "admin@example.com"
-        ? setTimeout(() => navigate(`/admin`), 8000)
-        : setTimeout(() => navigate(`/`), 8000)
+        ? setTimeout(() => navigate(`/admin`), 3000)
+        : setTimeout(() => navigate(`/`), 3000)
       : setTimeout(() => navigate(`/login`), 2000);
   };
   const clearInputs = (e) => {
