@@ -2,6 +2,8 @@
 
 This guide explains how to clone and set up both the client and API for the e-commerce project on your local system.
 
+### Deployed client side link: https://roarupa.netlify.app/
+
 ## Prerequisites
 
 Before proceeding, make sure you have the following installed:
@@ -13,10 +15,12 @@ Before proceeding, make sure you have the following installed:
 
 1. Install [NVM](https://github.com/nvm-sh/nvm) (if not already installed).
 2. Install Node.js version 16.3.0 using NVM:
+
    ```bash
    nvm install 16.3.0
 
    ```
+
 3. Set Node.js version 16.3.0 as the active version:
    ```bash
    nvm use 16.3.0
