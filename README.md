@@ -1,70 +1,243 @@
-# Getting Started with Create React App
+# E-Commerce Project Setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide explains how to clone and set up both the client and API for the e-commerce project on your local system.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before proceeding, make sure you have the following installed:
 
-### `npm start`
+- **Node.js** (preferably version 16.3.0)
+- **NVM (Node Version Manager)** to manage Node versions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Install Node.js Using NVM
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Install [NVM](https://github.com/nvm-sh/nvm) (if not already installed).
+2. Install Node.js version 16.3.0 using NVM:
+   ```bash
+   nvm install 16.3.0
 
-### `npm test`
+   ```
+3. Set Node.js version 16.3.0 as the active version:
+   ```bash
+   nvm use 16.3.0
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Clone the Repositories
 
-### `npm run build`
+Clone both the **client** and **API** repositories:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the **client** repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/Upasana-610/e-commerce-client.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Clone the **API** repository:
+   ```bash
+   git clone https://github.com/Upasana-610/e-commerce-api.git
+   ```
 
-### `npm run eject`
+## Install Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Install the necessary dependencies for both the client and API projects.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Navigate to the **e-commerce-client** directory and install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   cd e-commerce-client
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Navigate to the **e-commerce-api** directory and install dependencies:
+   ```bash
+   cd e-commerce-api
+   npm install
+   ```
 
-## Learn More
+## Configuration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Create `.env` File for API Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a `config.env` file at the root of the `e-commerce-api` directory and add the following configuration values:
 
-### Code Splitting
+Here's an updated version of the `.env` section, along with detailed guidance on how to create or obtain the necessary values:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `.env` Configuration with Guidance:
 
-### Analyzing the Bundle Size
+```env
+# MongoDB connection string
+DATABASE=mongodb+srv://<username>:<password>@e-commerce.amfwt.mongodb.net/e-commerce?retryWrites=true&w=majority
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# JWT & Secret Keys (replace with your own)
+JWT_SECRET=<your-jwt-secret>
+JWT_COOKIE_EXPIRES_IN=90d
+JWT_EXPIRES_IN=90d
 
-### Making a Progressive Web App
+# Email Configuration (use a service like SendGrid)
+SENDGRID_PASSWORD=<your-sendgrid-password>
+SENDGRID_USERNAME=apikey
+EMAIL_FROM=youremail@example.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Stripe API Key (replace with your secret key)
+STRIPE_SECRET_KEY=<your-stripe-secret-key>
 
-### Advanced Configuration
+# Webhook Secret Key
+WEBHOOK_SECRET=<your-webhook-secret>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Server Configuration
+PORT=3000
+```
 
-### Deployment
+### How to Get These Values:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. **MongoDB Connection String:**
 
-### `npm run build` fails to minify
+   - You will need to create a MongoDB Atlas account (or use your existing account).
+   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a new cluster.
+   - Once the cluster is created, go to the **Connect** tab in your cluster dashboard.
+   - Choose **Connect your application** and MongoDB will provide you with a connection string similar to:
+     ```bash
+     mongodb+srv://<username>:<password>@e-commerce.amfwt.mongodb.net/e-commerce?retryWrites=true&w=majority
+     ```
+   - Replace `<username>` and `<password>` with the MongoDB Atlas database username and password you've created during the setup.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. **JWT Secret Key:**
+
+   - The JWT secret is used to sign and verify JSON Web Tokens for your app’s authentication.
+   - **How to generate a secret:**
+     - You can generate a secure random string using an online generator or via a Node.js script:
+       ```javascript
+       require("crypto").randomBytes(64).toString("hex");
+       ```
+     - This will give you a string that you can use as your `JWT_SECRET`.
+   - **Important:** Make sure this key is kept private and not exposed anywhere.
+
+3. **Email Configuration (SendGrid):**
+
+   - **Set up SendGrid:**
+     1. Go to [SendGrid](https://sendgrid.com) and sign up for an account.
+     2. Once logged in, navigate to **Settings** -> **API Keys** -> **Create API Key**.
+     3. Choose a name for the key and select **Full Access**.
+     4. Save the API Key and use it in your `.env` file under `SENDGRID_PASSWORD`.
+   - **Set the `EMAIL_FROM` value:**
+     - This is the email address that will appear as the sender of your application’s emails. You can use any valid email address that SendGrid allows for your account (e.g., `youremail@example.com`).
+
+4. **Stripe API Key:**
+
+   - **Set up Stripe:**
+     1. Go to [Stripe](https://stripe.com) and create an account if you don’t already have one.
+     2. Once logged in, go to the **Developers** section and click on **API Keys**.
+     3. Copy your **Secret Key** (it will start with `sk_test_` for test keys) and paste it into the `.env` file under `STRIPE_SECRET_KEY`.
+     4. **Important:** Use the **Test Secret Key** for development purposes. When you're ready to go live, you can switch to the **Live Secret Key**.
+
+5. **Webhook Secret Key (Stripe Webhook):**
+
+   - **Set up Stripe Webhooks:**
+     1. In your Stripe dashboard, go to **Developers** -> **Webhooks**.
+     2. Click on **Add endpoint**, enter the URL of your server that will handle Stripe events (e.g., `http://localhost:3000/webhook` during local development).
+     3. After creating the endpoint, you will be provided with a **Webhook Secret Key**. This is the value that Stripe uses to sign events sent to your server.
+     4. Copy this secret and paste it into your `.env` file under `WEBHOOK_SECRET`.
+
+6. **Server Configuration (`PORT`):**
+   - The `PORT` is the port number where your API server will run. By default, it’s set to `3000`, but you can change this if needed.
+   - **Note:** Ensure that the port number does not conflict with other services running on your machine.
+
+---
+
+### Final `.env` Example:
+
+```env
+# MongoDB connection string
+DATABASE=mongodb+srv://your-mongodb-username:your-mongodb-password@e-commerce.amfwt.mongodb.net/e-commerce?retryWrites=true&w=majority
+
+# JWT & Secret Keys (replace with your own)
+JWT_SECRET=your-secure-jwt-secret
+JWT_COOKIE_EXPIRES_IN=90d
+JWT_EXPIRES_IN=90d
+
+# Email Configuration (use a service like SendGrid)
+SENDGRID_PASSWORD=your-sendgrid-api-key
+SENDGRID_USERNAME=apikey
+EMAIL_FROM=youremail@example.com
+
+# Stripe API Key (replace with your secret key)
+STRIPE_SECRET_KEY=your-stripe-secret-key
+
+# Webhook Secret Key
+WEBHOOK_SECRET=your-stripe-webhook-secret
+
+# Server Configuration
+PORT=3000
+```
+
+### Additional Recommendations:
+
+- **Keep `.env` File Secure:** Never commit your `.env` file to version control. Use `.gitignore` to ensure it remains private.
+  - Example of `.gitignore`:
+    ```bash
+    .env
+    node_modules/
+    ```
+- **Environment-Specific Configurations:** You can create different `.env` files for different environments (e.g., `.env.production`, `.env.development`) and load them based on the environment you're running in.
+
+With this setup and guidance, you'll be able to securely manage sensitive data and configure the project correctly for both local development and production.
+
+Replace `<PASSWORD>` in the `DATABASE` URL with your MongoDB password.
+
+### Configure Client to Use Local Server
+
+If you want the client to connect to the local server instead of the deployed server on Render, follow these steps:
+
+1. Navigate to `e-commerce-client/src/api/password.js`.
+2. You will see two lines like this:
+   ```javascript
+   export const BASE_URL = "https://roarupaapp.onrender.com";
+   // export const BASE_URL = "http://localhost:3000";
+   ```
+3. Comment the first line and uncomment the second:
+   ```javascript
+   // export const BASE_URL = "https://roarupaapp.onrender.com";
+   export const BASE_URL = "http://localhost:3000";
+   ```
+
+This will configure the client to connect to your locally running server instead of the deployed one.
+
+## Running the Project
+
+### Start the API Server
+
+1. Navigate to the `e-commerce-api` directory and run the server:
+
+   ```bash
+   cd e-commerce-api
+   npm run start
+   ```
+
+   The API server will start on port `3000` by default.
+
+### Start the Client
+
+1. Open a new terminal window and navigate to the `e-commerce-client` directory:
+
+   ```bash
+   cd e-commerce-client
+   npm run start
+   ```
+
+   This will start the client-side application and open it in your browser.
+
+## Summary
+
+- The client-side code is served on your local system at `http://localhost:3001`.
+- The backend API is also running locally at `http://localhost:3000`.
+
+Make sure to adjust the `BASE_URL` as mentioned above to ensure that the client connects to the local server instead of the deployed one.
+
+## Troubleshooting
+
+- If you encounter any issues related to MongoDB, ensure that the database credentials in `config.env` are correct.
+- If the client doesn't connect properly, double-check the `BASE_URL` in `password.js` to ensure it's pointing to the correct local endpoint.
+
+---
+
+Happy coding!
