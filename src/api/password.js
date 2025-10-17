@@ -2,7 +2,7 @@ import axios from "axios";
 import { showAlert } from "./alerts";
 import { CLIENT_URL } from "./stripe";
 
-export const BASE_URL = "https://roarupa-api.vercel.app";
+export const BASE_URL = "https://roarupaapp.onrender.com";
 // export const BASE_URL = "http://localhost:3000";
 
 export const updatePassword = async ({
