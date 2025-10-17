@@ -26,9 +26,9 @@ function HomePage() {
       {console.log(email)}
       <Layout>
         <AdImgSlider />
+        <Categories />
         <Headings heading={"New Arrivals"} data={"newarrivals"} />
         <Headings heading={"Top Sellers"} data={"topsellers"} />
-        <Categories />
         {/* <Searchbar />
         <Slidebar /> */}
       </Layout>
