@@ -1,45 +1,44 @@
-import React from "react";
-import AdImgSlider from "../../components/HomePage/AdImgSlider/AdImgSlider";
-
+import React, { lazy, Suspense } from "react";
 import Layout from "../../Layout/Layout";
-
-import Headings from "../../components/HomePage/Heading/Headings";
-import Categories from "../../components/HomePage/Categories/Categories";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { ClockLoader } from "react-spinners";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
+// Lazy-loaded components
+const AdImgSlider = lazy(() => import("../../components/HomePage/AdImgSlider/AdImgSlider"));
+const Categories = lazy(() => import("../../components/HomePage/Categories/Categories"));
+const Headings = lazy(() => import("../../components/HomePage/Heading/Headings"));
 
 function HomePage() {
-  let { email } = useSelector((state) =>
+  const { email } = useSelector((state) =>
     state.user.user !== null ? state.user.user : { undefined }
   );
- const override = {
-    display: "block",
-    margin: "20% auto",
-    borderColor: "blue",
-  };
-  let { isLoading } = useSelector((state) =>
-    state.user.isLoading === true ? state.user.isLoading : state.user.isLoading
-  );
-  let navigate = useNavigate();
+
+  const { isLoading } = useSelector((state) => state.user.isLoading);
+
+  const navigate = useNavigate();
 
   const goToAdmin = () => {
     navigate(`/admin`);
   };
+
+  const loaderStyle = {
+    display: "block",
+    margin: "20% auto",
+    borderColor: "blue",
+  };
+
   return (
     <>
-      {/* <Navbar />
-
-      <AdImgSlider /> */}
-      {email === "admin@example.com" ? goToAdmin() : ""}
-      {console.log(email)}
+      {email === "admin@example.com" ? goToAdmin() : null}
       <Layout>
         {isLoading ? (
           <ClockLoader
             loading={true}
             color="#ea5a6dff"
-            cssOverride={override}
+            cssOverride={loaderStyle}
             speedMultiplier={1}
             aria-label="Loading Spinner"
             data-testid="loader"
@@ -47,15 +46,25 @@ function HomePage() {
           />
         ) : (
           <>
-            <AdImgSlider />
-            <Categories />
-            <Headings heading={"New Arrivals"} data={"newarrivals"} />
-            <Headings heading={"Top Sellers"} data={"topsellers"} />
+            {/* Lazy load AdImgSlider */}
+            <Suspense fallback={<Skeleton width="100%" height={300} />}>
+              <AdImgSlider />
+            </Suspense>
+
+            {/* Lazy load Categories */}
+            <Suspense fallback={<Skeleton width="100%" height={150} />}>
+              <Categories />
+            </Suspense>
+
+            {/* Lazy load Headings sections */}
+            <Suspense fallback={<Skeleton width="100%" height={400} count={1} />}>
+              <Headings heading={"New Arrivals"} data={"newarrivals"} />
+            </Suspense>
+            <Suspense fallback={<Skeleton width="100%" height={400} count={1} />}>
+              <Headings heading={"Top Sellers"} data={"topsellers"} />
+            </Suspense>
           </>
         )}
-
-        {/* <Searchbar />
-        <Slidebar /> */}
       </Layout>
     </>
   );

@@ -10,7 +10,12 @@ export const Auth = styled.div`
   padding: 8vmin;
 
   button {
-    background-color: rgba(70, 4, 15, 0.99);
+    background: #2cb1d2df;
+    background: linear-gradient(
+      90deg,
+      rgba(44, 177, 210, 1) 3%,
+      rgba(76, 220, 137, 1) 87%
+    );
     color: white;
     margin-top: 5vmin;
     margin-left: 10vmin;
@@ -20,7 +25,12 @@ export const Auth = styled.div`
   }
 
   button:hover {
-    background-color: darkblue;
+    background: #0bf5dddf;
+    background: linear-gradient(
+      90deg,
+      rgba(50, 210, 44, 1) 3%,
+      rgba(3, 244, 103, 1) 87%
+    );
     cursor: pointer;
   }
 `;

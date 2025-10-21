@@ -5,14 +5,7 @@ const Footer = () => {
   return (
     <Footercs>
       <h4>
-        {new Date().getFullYear()} Made by Upasana Pan{" "}
-        <a
-          href="https://www.linkedin.com/in/upasana-pan-b416451b7/"
-          target="_blank"
-          rel="norefferer"
-        >
-          Linked In
-        </a>
+        {new Date().getFullYear()}@Upasana{" "}
       </h4>
     </Footercs>
   );

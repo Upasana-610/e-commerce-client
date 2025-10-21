@@ -29,7 +29,22 @@ export const Logincss = styled.div`
     border-radius: 0.25rem;
     font-size: 2rem;
   }
-
+  .button {
+    background: #2cb1d2df;
+    background: linear-gradient(
+      90deg,
+      rgba(44, 177, 210, 1) 3%,
+      rgba(76, 220, 137, 1) 87%
+    );
+  }
+  .button input:hover {
+    background: #0bf5dddf;
+    background: linear-gradient(
+      90deg,
+      rgba(50, 210, 44, 1) 3%,
+      rgba(3, 244, 103, 1) 87%
+    );
+  }
   .form {
     margin-top: 3vmin;
     height: fit-content;

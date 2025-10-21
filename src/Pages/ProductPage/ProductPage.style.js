@@ -39,7 +39,13 @@ export const Productcover = styled.div`
   }
 
   button {
-    background-color: rgba(70, 4, 15, 0.99);
+    background: #2cb1d2df;
+    background: linear-gradient(
+      90deg,
+      rgba(44, 177, 210, 1) 3%,
+      rgba(76, 220, 137, 1) 87%
+    );
+  
     color: white;
     margin-top: 5vmin;
     /* margin-left: 10vmin; */
@@ -47,8 +53,13 @@ export const Productcover = styled.div`
     font-size: 2vmin;
     border: none;
   }
-
   button:hover {
+    background: #0bf5dddf;
+    background: linear-gradient(
+      90deg,
+      rgba(50, 210, 44, 1) 3%,
+      rgba(3, 244, 103, 1) 87%
+    );
     background-color: darkblue;
     cursor: pointer;
   }

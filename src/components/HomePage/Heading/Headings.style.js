@@ -29,10 +29,11 @@ export const Headingscss = styled.div`
 export const Buttoncss = styled.div`
   button {
     left: 50%;
-    transform:translateX(-30%) ;
+    transform:translateX(-20%) ;
     width: 15vw;
     border-radius: 5px;
     margin: 0 45% 2% 45%;
+    margin-bottom: 5vw;
     height: 5vw;
     font-size: 1.25vw;
     padding: 1vw 1.5vw;

@@ -1,25 +1,25 @@
 import styled from "styled-components";
 
 export const Footercs = styled.div`
-  text-align: center;
-  height: 3vw;
-  color: white;
-  padding-top: 1vw;
+  height: 30px;
   background-color: #2CB1D2;
-  width: 100vw;
-  /* position: fixed; */
+  position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  width: 100%;
+  color: white;
+  text-align: center;
 
   h4 {
     font-size: 2vmin;
+    margin: 0.8vh;
   }
 
   @media (max-width: 650px) {
-    height: 7vw;
+    height: 30px;
     h4 {
       font-size: 3vmin;
+      margin: 3px;
       a {
         color: skyblue;
       }
