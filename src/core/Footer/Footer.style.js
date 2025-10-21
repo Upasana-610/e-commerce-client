@@ -5,9 +5,9 @@ export const Footercs = styled.div`
   height: 3vw;
   color: white;
   padding-top: 1vw;
-  background-color: rgba(70, 4, 15, 0.99);
+  background-color: #2CB1D2;
   width: 100vw;
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   z-index: 1;

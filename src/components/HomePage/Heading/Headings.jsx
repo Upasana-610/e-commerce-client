@@ -44,7 +44,7 @@ const Headings = ({ heading, data }) => {
               ))}
       </Headingscss>
       <Buttoncss>
-        <button onClick={handleClick}>View All</button>
+        <button onClick={handleClick}>VIEW ALL</button>
       </Buttoncss>
     </div>
   );

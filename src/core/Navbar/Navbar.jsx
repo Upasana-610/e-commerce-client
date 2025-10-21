@@ -10,6 +10,7 @@ import { NavbarCss, Logo, Icon, Ad } from "./Navbar.style";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux";
+import Sidebar from "../../components/SideBar/Sidebar";
 
 const Navbar = () => {
   let [ad, setAd] = useState([]);
@@ -63,41 +64,9 @@ const Navbar = () => {
   return (
     <>
       <NavbarCss>
-        <Menu>
-          <a
-            id="Checkout My Github"
-            className="menu-item"
-            href="https://github.com/Upasana-610"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
-          </a>
-          <a
-            id="Resume"
-            className="menu-item"
-            href="https://drive.google.com/file/d/1lFVH-YINOcpMbGDzba0QNZlWed3vOc3T/view?usp=drive_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Resume
-          </a>
-          <a
-            id="Contact me on Linked In"
-            className="menu-item"
-            href="https://www.linkedin.com/in/upasana-pan-610upa/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Linked In
-          </a>
-          {/* <a onClick={this.showSettings} className="menu-item--small" href="">
-            Settings
-          </a> */}
-        </Menu>
+        <Sidebar /> 
         <Logo onClick={gotoHome}>
           <img src={logo} />
-          <p>Roar</p>
         </Logo>
 
         <Icon
@@ -136,13 +105,6 @@ const Navbar = () => {
             </>
           )}
           <>
-            {/* <FiSearch
-              className="iconcls"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setSearch(!search);
-              }}
-            /> */}
             <FaShoppingCart
               onClick={cartPage}
               className="iconcls"
@@ -152,11 +114,6 @@ const Navbar = () => {
             {isAuthenticated === true ? <p>{usercart.length}</p> : ""}
           </>
         </Icon>
-        {/* <input
-          type="text"
-          placeholder="search here"
-          className={search ? `hidden` : ""}
-        /> */}
       </NavbarCss>
     </>
   );

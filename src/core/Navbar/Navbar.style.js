@@ -5,8 +5,9 @@ export const NavbarCss = styled.div`
   justify-content: space-between;
   align-items: center;
   color: white;
-  background-color: rgba(70, 4, 15, 0.99);
-  height: 9vw;
+  background: #2CB1D2DF;
+  background: linear-gradient(90deg,rgba(44, 177, 210, 1) 3%, rgba(76, 220, 137, 1) 87%);
+  height: 4vw;
   padding: 3vw 8vmin;
 
   .iconcls {
@@ -16,7 +17,7 @@ export const NavbarCss = styled.div`
   }
 
   @media (max-width: 650px) {
-    height: 40vw;
+    height: 20vw;
 
     .iconcls {
       cursor: "pointer";
@@ -44,6 +45,13 @@ export const NavbarCss = styled.div`
 `;
 
 export const Logo = styled.div`
+  /* --- Styles for Centering Logo --- */
+  position: absolute;
+  left: 50%;
+  transform: translateX(
+    -100%
+  ); /* Compensates for the logo's width to ensure true center */
+  /* --- End Centering Styles --- */
   p {
     text-align: center;
     font-size: 1.5vw;
@@ -51,8 +59,8 @@ export const Logo = styled.div`
     margin-left: 8vw;
   }
   img {
-    width: 4vw;
-    height: 4vw;
+    width: 3vw;
+    height: 3.5vw;
     margin-left: 8vw;
     filter: brightness(0) invert(1);
   }
@@ -72,6 +80,9 @@ export const Logo = styled.div`
 export const Icon = styled.div`
   display: inline-flex;
   justify-content: space-between;
+  position: absolute;
+  right: 5%;
+   /* Compensates for the logo's width to ensure true center */
 
   .profile {
     border-radius: 100%;

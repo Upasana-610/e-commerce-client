@@ -16,13 +16,19 @@ const ProductBox = ({ val = [] }) => {
         ""
       ) : (
         <ProductBoxcss onClick={handleProductPage}>
-          <Imagebox
-            pImage={`/img/Products/Product1/${val.pImages[0]}`}
-            pImageHover={`/img/Products/Product1/${val.pImages[1]}`}
-          >
+          <Imagebox pImage={`/img/Products/Product1/${val.pImages[0]}`}>
             <div>
               <div className="img"></div>
-              <button className="button">View</button>
+              <button
+                style={{
+                  background: "#2CB1D2DF",
+                  background:
+                    "linear-gradient(90deg,rgba(44, 177, 210, 1) 3%, rgba(76, 220, 137, 1) 87%)",
+                }}
+                className="button"
+              >
+                View
+              </button>
             </div>
 
             <Details>

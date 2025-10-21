@@ -58,11 +58,6 @@ export const Imagebox = styled.div`
       display: inline-block;
     } */
     cursor: pointer;
-
-    .img {
-      background: url(${({ pImageHover }) => pImageHover}) no-repeat center;
-      background-size: auto 100%;
-    }
     .button {
       display: inline-block;
       cursor: pointer;

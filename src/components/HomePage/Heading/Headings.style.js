@@ -28,27 +28,30 @@ export const Headingscss = styled.div`
 
 export const Buttoncss = styled.div`
   button {
-    width: 10vw;
+    left: 50%;
+    transform:translateX(-30%) ;
+    width: 15vw;
     border-radius: 5px;
     margin: 0 45% 2% 45%;
     height: 5vw;
     font-size: 1.25vw;
     padding: 1vw 1.5vw;
     letter-spacing: 3px;
-    background-color: rgba(70, 4, 15, 0.99);
+    background: #2cb1d2df;
+    background: linear-gradient(
+      90deg,
+      rgba(44, 177, 210, 1) 3%,
+      rgba(76, 220, 137, 1) 87%
+    );
     color: white;
     border: none;
   }
   button:hover {
-    background: rgb(0, 0, 0);
+    background: #0bf5dddf;
     background: linear-gradient(
-      130deg,
-      rgba(0, 0, 0, 1) 14%,
-      rgba(116, 116, 126, 1) 30%,
-      rgba(0, 0, 0, 1) 48%,
-      rgba(116, 116, 126, 1) 75%,
-      rgba(0, 0, 0, 1) 91%,
-      rgba(0, 0, 0, 1) 7076%
+      90deg,
+      rgba(50, 210, 44, 1) 3%,
+      rgba(3, 244, 103, 1) 87%
     );
     cursor: pointer;
   }

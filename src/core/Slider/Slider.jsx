@@ -9,11 +9,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
   let settings = {
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 100,
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 1500,
+    speed: 5000,
     // variableWidth: true,
   };
 
@@ -29,7 +29,6 @@ const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
                 <img
                   src={`./img/AdSlider/${item.adImg}`}
                   alt={"ad"}
-                  style={{ width: "8%" }}
                   key={idx}
                 />
               );
