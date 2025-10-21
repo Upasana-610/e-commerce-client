@@ -2,7 +2,9 @@
 
 This guide explains how to clone and set up both the client and API for the e-commerce project on your local system.
 
-### Deployed client side link: https://roarupa.netlify.app/
+### Live URL: https://roarupa.netlify.app/
+### Backend code repository : https://github.com/Upasana-610/e-commerce-api
+### Backend code deployed endpoint link: https://roarupa.onrender.com
 
 ## Prerequisites
 
