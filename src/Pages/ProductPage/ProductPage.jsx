@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { addCart } from "../../redux/user/usercartActions";
 import ProductPageComp from "../../components/ProductPageComp";
+import { MoonLoader } from "react-spinners";
 
 const ProductPage = () => {
   let params = useParams();
@@ -134,11 +135,19 @@ const ProductPage = () => {
                 alt="MainImg"
               ></img>
             ) : (
-              new Array(21)
-                .fill(100)
-                .map((item, idx) => (
-                  <Skeleton width={800} height={50} key={idx} />
-                ))
+              <MoonLoader
+                loading={true}
+                color="#3BC6B0"
+                cssOverride={{
+                  display: "block",
+                  margin: "20% auto",
+                  borderColor: "blue",
+                }}
+                speedMultiplier={1}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+                size={100}
+              />
             )}
             <button onClick={cartAdd}>Add to Cart</button>
           </div>
@@ -168,9 +177,21 @@ const ProductPage = () => {
     </Layout>
   ) : (
     <Layout>
-      {new Array(21).fill(100).map((item, idx) => (
-        <Skeleton width={10000} height={200} key={idx} />
-      ))}{" "}
+      {
+        <MoonLoader
+          loading={true}
+          color="#3BC6B0"
+          cssOverride={{
+            display: "block",
+            margin: "20% auto",
+            borderColor: "blue",
+          }}
+          speedMultiplier={1}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          size={100}
+        />
+      }{" "}
     </Layout>
   );
 };

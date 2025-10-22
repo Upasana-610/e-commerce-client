@@ -15,6 +15,7 @@ import { Notauth } from "../../../Pages/cartPage/Cart.style";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Heading2 } from "../../HomePage/Heading/Headings.style";
+import { MoonLoader } from "react-spinners";
 
 function Productlist({ type }) {
   let navigate = useNavigate();
@@ -76,9 +77,19 @@ function Productlist({ type }) {
                     );
                   }
                 )
-              : new Array(21)
-                  .fill(100)
-                  .map(() => <Skeleton width={300} height={350} />)}
+              : <MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      />}
           </Categoriescss>
         </>
       ) : (
@@ -101,10 +112,19 @@ function Productlist({ type }) {
         ) : (
           <h1>
             {productData.loading
-              ? new Array(21)
-                  .fill(100)
-                  .map(() => <Skeleton width={300} height={350} />)
-              : ""}
+              ? <MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      />: ""}
           </h1>
         )}
       </Productlistcss>

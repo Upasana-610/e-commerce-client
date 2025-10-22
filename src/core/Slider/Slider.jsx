@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { MoonLoader } from "react-spinners";
 
 const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
   let settings = {
@@ -36,7 +37,19 @@ const Slidercomp = ({ data = [], height, width, color = "transparent" }) => {
           </Slider>
         </Ad>
       ) : (
-        <Skeleton height={500} />
+        <MoonLoader
+          loading={true}
+          color="#3BC6B0"
+          cssOverride={{
+            display: "block",
+            margin: "20% auto",
+            borderColor: "blue",
+          }}
+          speedMultiplier={1}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          size={100}
+        />
       )}
     </>
   );

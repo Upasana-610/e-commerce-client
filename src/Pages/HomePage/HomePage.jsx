@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import Layout from "../../Layout/Layout";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { ClockLoader } from "react-spinners";
+import { ClockLoader, MoonLoader } from "react-spinners";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -47,20 +47,68 @@ function HomePage() {
         ) : (
           <>
             {/* Lazy load AdImgSlider */}
-            <Suspense fallback={<Skeleton width="100%" height={300} />}>
+            <Suspense fallback={<MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      />}>
               <AdImgSlider />
             </Suspense>
 
             {/* Lazy load Categories */}
-            <Suspense fallback={<Skeleton width="100%" height={150} />}>
+            <Suspense fallback={<MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      />}>
               <Categories />
             </Suspense>
 
             {/* Lazy load Headings sections */}
-            <Suspense fallback={<Skeleton width="100%" height={400} count={1} />}>
+            <Suspense fallback={<MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      /> }>
               <Headings heading={"New Arrivals"} data={"newarrivals"} />
             </Suspense>
-            <Suspense fallback={<Skeleton width="100%" height={400} count={1} />}>
+            <Suspense fallback={<MoonLoader
+                        loading={true}
+                        color="#3BC6B0"
+                        cssOverride={{
+                          display: "block",
+                          margin: "20% auto",
+                          borderColor: "blue",
+                        }}
+                        speedMultiplier={1}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                        size={100}
+                      />}>
               <Headings heading={"Top Sellers"} data={"topsellers"} />
             </Suspense>
           </>
