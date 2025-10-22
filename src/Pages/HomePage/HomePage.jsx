@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import Layout from "../../Layout/Layout";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { ClockLoader, MoonLoader } from "react-spinners";
+import { ClockLoader, MoonLoader, PacmanLoader } from "react-spinners";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -64,7 +64,7 @@ function HomePage() {
             </Suspense>
 
             {/* Lazy load Categories */}
-            <Suspense fallback={<MoonLoader
+            <Suspense fallback={<PacmanLoader
                         loading={true}
                         color="#3BC6B0"
                         cssOverride={{
@@ -75,7 +75,7 @@ function HomePage() {
                         speedMultiplier={1}
                         aria-label="Loading Spinner"
                         data-testid="loader"
-                        size={100}
+                        size={80}
                       />}>
               <Categories />
             </Suspense>
@@ -96,7 +96,7 @@ function HomePage() {
                       /> }>
               <Headings heading={"New Arrivals"} data={"newarrivals"} />
             </Suspense>
-            <Suspense fallback={<MoonLoader
+            <Suspense fallback={<PacmanLoader
                         loading={true}
                         color="#3BC6B0"
                         cssOverride={{
@@ -107,7 +107,7 @@ function HomePage() {
                         speedMultiplier={1}
                         aria-label="Loading Spinner"
                         data-testid="loader"
-                        size={100}
+                        size={80}
                       />}>
               <Headings heading={"Top Sellers"} data={"topsellers"} />
             </Suspense>
